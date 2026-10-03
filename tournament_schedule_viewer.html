@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Schedule Viewer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 24px;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        h1 {
+            color: #0f172a;
+            margin: 0 0 4px 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .meta-info {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .filter-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .filter-item label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .filter-item input, .filter-item select {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background-color: #fff;
+            color: #1e293b;
+            outline: none;
+        }
+        .filter-item input:focus, .filter-item select:focus {
+            border-color: #2563eb;
+        }
+        .table-container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 14px 16px;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+        .no-records {
+            padding: 40px;
+            text-align: center;
+            color: #94a3b8;
+            font-style: italic;
+        }
+/* Badge Styling Wrapper Classes */
+.div-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Color Theme Classes matching your image rings */
+.icon-blue   { border: 3px solid #0000ff; background-color: #b9c2f7; color: #0000ff; }
+.icon-pink   { border: 3px solid #ff00ff; background-color: #fbcbfb; color: #ff00ff; }
+.icon-green  { border: 3px solid #008000; background-color: #b7dfb7; color: #008000; }
+.icon-yellow { border: 3px solid #ffff00; background-color: #fffbcf; color: #999900; }
+
+@media screen and (max-width: 1100px) {
+    /* 1. CLEAN HIDE FOR DESKTOP & REPEATED HEADERS (Goodbye empty lozenges!) */
+    table thead,
+    table tbody tr:has(th) {
+        display: none !important;
+    }
+    
+    /* Safely target rows that have no match data columns populated */
+    table tbody tr:not(:has([colspan])) td:empty {
+        display: none !important;
+    }
+    
+    /* 2. FORCE WORKSPACE CONTAINERS FULL WIDTH SANS SCROLL GAP MARGINS */
+    body {
+        padding: 12px !important; /* Premium comfortable mobile workspace border spacing padding */
+        background-color: #f3f4f6 !important;
+    }
+    table, tbody {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 3. FLUID STICKY SCROLL ANCHORING ENGINE - ZERO SCROLL JUMPING GAPS */
+    /* Freeze the Page Title text to the top edge of your glass window screen viewport */
+    header {
+        position: sticky !important;
+        top: -12px !important;       /* Syncs past body padding walls to latch flush at the glass top margin edge */
+        z-index: 150 !important;      /* Anchors title block securely on top display layer plane */
+        background-color: #f3f4f6 !important; /* Solid matching gray background completely masks scrolling rows behind it */
+        margin: 0 -12px !important;   /* Spans background color fully flush edge-to-edge across screen width */
+        padding: 12px 12px 6px 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Freeze the filter dropdown container board right underneath the page title block */
+    .filter-card {
+        position: sticky !important;
+        top: 42px !important;        /* Clamps right underneath the text height boundaries of the header title */
+        z-index: 140 !important;      /* Layers perfectly between title layer and schedule card entries layout */
+        background-color: #ffffff !important;
+        margin: 0 -12px 16px -12px !important; /* Expands background box edge-to-edge flush across screen bounds */
+        padding: 16px !important;
+        border-radius: 0 0 16px 16px !important; /* Rounds only the bottom lip edges for a native smartphone app design look */
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important; /* Polished box boundary indicator shadow accent line */
+        box-sizing: border-box !important;
+    }
+
+    /* 4. TIGHT DYNAMIC FILTERS POSITIONING MATRIX TRACK ROWS */
+    .filter-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* Pairs input elements cleanly into 2 columns */
+        gap: 10px 12px !important;
+    }
+
+    /* Transform each match data entry cleanly into an isolated card module row block */
+    table tbody tr:not(:has([colspan])) {
+        display: block !important; 
+        padding: 16px !important;
+        margin: 14px 0px !important; 
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Clear cell paddings and borders inside the card wrapper containers */
+    table tbody tr:not(:has([colspan])) td {
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+    }
+
+    /* LINE 1 FLOW: Run Time, Competition, and Event side-by-side cleanly */
+    table tbody tr:not(:has([colspan])) td:nth-child(1),
+    table tbody tr:not(:has([colspan])) td:nth-child(2),
+    table tbody tr:not(:has([colspan])) td:nth-child(3) {
+        display: inline-block !important; 
+        width: auto !important;
+        vertical-align: middle !important;
+    }
+
+    /* Clock Time formatting */
+    table tbody tr:not(:has([colspan])) td:nth-child(1) code {
+        font-size: 1.05rem !important;
+        font-weight: 800 !important;
+        color: #0f172a !important;
+        margin-right: 8px !important; 
+    }
+
+    /* Competition text formatting */
+    table tbody tr:not(:has([colspan])) td:nth-child(2) {
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* Inserts a tighter typographic en-dash separator string */
+    table tbody tr:not(:has([colspan])) td:nth-child(2)::after {
+        content: " \2013\00a0" !important; 
+        color: #cbd5e1 !important;
+        font-weight: 400 !important;
+    }
+
+    /* Event formatting matches the Competition text exactly */
+    table tbody tr:not(:has([colspan])) td:nth-child(3) {
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* LINE 2: Keep your 7 circular division icons on a single horizontal row track without crushing */
+    table tbody tr:not(:has([colspan])) td:nth-child(4) {
+        display: block !important; 
+        margin-top: 12px !important;
+        width: 100% !important;
+    }
+    table tbody tr:not(:has([colspan])) td:nth-child(4) div {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important; 
+        gap: 6px !important;
+    }
+    table tbody tr:not(:has([colspan])) td:nth-child(4) .div-icon {
+        width: 28px !important; 
+        height: 28px !important; 
+        font-size: 0.75rem !important;
+        margin-right: 0 !important;
+        flex-shrink: 0 !important; 
+    }
+
+    /* LINE 3: Round breakdown text label */
+    table tbody tr:not(:has([colspan])) td:nth-child(5) {
+        display: block !important;
+        margin-top: 10px !important;
+        font-weight: 600 !important;
+        color: #0f172a !important;
+        font-size: 0.95rem !important;
+        width: 100% !important;
+    }
+
+    /* LINE 4: Comments field message text block */
+    table tbody tr:not(:has([colspan])) td:nth-child(6) {
+        display: block !important;
+        margin-top: 4px !important;
+        font-size: 0.85rem !important;
+        color: #64748b !important;
+        width: 100% !important;
+    }
+
+    /* FLUSH FULL-WIDTH DAY BANNERS: Neutralizes the body's side paddings to extend edge-to-edge */
+    table tbody tr:has([colspan="6"]), 
+    table tbody tr:has([colspan="8"]) {
+        display: block !important;
+        width: calc(100% + 24px) !important; /* Expanded precisely to wipe out layout spacing side blocks */
+        margin: 24px -12px 12px -12px !important; /* Negative horizontal side margins pull background color to edges */
+        box-sizing: border-box !important;
+    }
+    
+    table tbody tr:has([colspan="6"]) td,
+    table tbody tr:has([colspan="8"]) td.day-header-row {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        border-radius: 0px !important;
+        text-align: center !important;
+        padding: 16px !important;
+        text-transform: none !important; 
+        letter-spacing: normal !important;
+    }
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div>
+            <h1>Tournament Schedule Viewer</h1>
+            
+        </div>
+
+    </header>
+
+    <div class="filter-card">
+        <div class="filter-grid">
+
+           <div class="filter-item" style="display: none;">
+                <label for="txtSearch">Keyword Search</label>
+                <input type="text" id="txtSearch" placeholder="Search event details..." disabled>
+            </div>
+
+            <div class="filter-item" style="display: none;">
+                <label for="selDay">Day</label>
+                <select id="selDay" disabled>
+                    <option value="">-- All Days --</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label for="selComp">Competition</label>
+                <select id="selComp" disabled>
+                    <option value="">-- All Competitions --</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label for="selEvent">Event</label>
+                <select id="selEvent" disabled>
+                    <option value="">-- All Categories --</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label for="selDivision">Division</label>
+                <select id="selDivision" disabled>
+                    <option value="">-- All Divisions --</option>
+                </select>
+            </div>
+            <div class="filter-item" style="display: none;">
+                <label for="selRound">Round</label>
+                <select id="selRound" disabled>
+                    <option value="">-- All Rounds --</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+<!-- Replace your current legend block with this 4-column fluid layout -->
+<div style="background: #ffffff; padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 16px;">
+    
+    <!-- Title Section -->
+    <div style="font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; text-align: center;">
+        Division Legend
+    </div>
+    
+    <!-- Responsive CSS Flex Grid Layout -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px 12px; max-width: 900px; width: 100%; margin: 0 auto; justify-content: center;">
+        
+        <!-- Every legend track wrapper below is configured to lock at a maximum of 4 columns (25% width share) -->
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-blue" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">M</span> Men
+        </div>
+        
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-blue" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">O</span> Open
+        </div>
+        
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-blue" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">U23</span> Under 23
+        </div>
+        
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-pink" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">W</span> Women
+        </div>
+        
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-pink" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">50+</span> Over 50 W
+        </div>
+        
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-green" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">M</span> Masters
+        </div>
+        
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-green" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">60+</span> Over 60
+        </div>
+        
+        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
+            <span class="div-icon icon-yellow" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">CUP</span> Australia Cup
+        </div>
+
+    </div>
+</div>
+
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Competition</th>
+                    <th>Event</th>
+                    <th>Division</th>
+                    <th>Round</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleRows"></tbody>
+        </table>
+        <div id="emptyView" class="no-records">No records found.</div>
+    </div>
+</div>
+
+<script>
+    let dataset = [];
+
+window.addEventListener('DOMContentLoaded', function() {
+    fetch('Matches_List.csv')
+        .then(response => {
+            if (!response.ok) throw new Error('File not found');
+            return response.text();
+        })
+        .then(text => parseCSVText(text))
+        .catch(error => {
+            document.getElementById('counter').textContent = 'Error loading CSV file.';
+        });
+});
+
+
+    function parseCSVText(text) {
+        const lines = text.split(/\r\n|\n/);
+        if (lines.length < 2) return;
+
+        dataset = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+
+            const cells = [];
+            let current = '';
+            let insideQuotes = false;
+            
+            for (let c = 0; c < line.length; c++) {
+                let char = line.charAt(c);
+                if (char === '"') {
+                    insideQuotes = !insideQuotes;
+                } else if (char === ',' && !insideQuotes) {
+                    cells.push(current.trim().replace(/^"|"$/g, ''));
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            cells.push(current.trim().replace(/^"|"$/g, ''));
+
+            if (cells.length >= 7) {
+                const rowDay = cells.at(0);
+                const rowDate = cells.at(1);
+                const rowTime = cells.at(2);
+                const rowComp = cells.at(3);
+                const rowEvent = cells.at(4);
+                const rowDiv = cells.at(5);
+                const rowRound = cells.at(6);
+                const rowComment = cells.length >= 8 ? cells.at(7) : '';
+
+                // Create a unique time slot fingerprint string key
+                const slotKey = rowDate + '|' + rowTime + '|' + rowComp + '|' + rowEvent + '|' + rowRound;
+
+                // Check if this time slot already exists in our dataset array list
+                const existingEntry = dataset.find(item => item.SlotKey === slotKey);
+
+                if (existingEntry) {
+                    // 1. Safely add the concurrent division tag to the horizontal array list if it's missing
+                    if (!existingEntry.Divisions.includes(rowDiv)) {
+                        existingEntry.Divisions.push(rowDiv);
+                    }
+                    
+                    // 2. STABLE CONDITIONAL MULTI-COMMENT PREFIX ENGINE
+                    if (rowComment && rowComment.trim() !== "") {
+                        // Generate a clean mini text token lookup matching your strict legend categories
+                        let cleanDiv = rowDiv.trim().toLowerCase();
+                        let miniLabel = rowDiv.trim();
+                        
+                        if (cleanDiv === 'open') miniLabel = 'O';
+                        else if (cleanDiv === 'men' || cleanDiv === 'mens' || cleanDiv === "men's") miniLabel = 'M';
+                        else if (cleanDiv === 'women' || cleanDiv === 'womens' || cleanDiv === "women's") miniLabel = 'W';
+                        else if (cleanDiv.includes('50')) miniLabel = '50+';
+                        else if (cleanDiv.includes('60')) miniLabel = '60+';
+                        else if (cleanDiv.includes('23') || cleanDiv.includes('u23')) miniLabel = 'U23';
+                        else if (cleanDiv.includes('master')) miniLabel = 'Mas';
+                        else if (cleanDiv.includes('cup')) miniLabel = 'Cup';
+
+                        const formattedIncomingComment = "[" + miniLabel + "] " + rowComment.trim();
+
+                        if (!existingEntry.Comment || existingEntry.Comment.trim() === "") {
+                            // If the row had no comment yet, save this formatted entry
+                            existingEntry.Comment = formattedIncomingComment;
+                        } else {
+                            // If a comment exists, ensure the FIRST entry is also labeled retroactively
+                            if (!existingEntry.Comment.startsWith("[")) {
+                                // Look up the very first division badge saved in the array stack row
+                                let baseDiv = existingEntry.Divisions.at(0) || '';
+                                let baseCleanDiv = baseDiv.trim().toLowerCase();
+                                let baseMiniLabel = baseDiv.trim();
+
+                                if (baseCleanDiv === 'open') baseMiniLabel = 'O';
+                                else if (baseCleanDiv === 'men' || baseCleanDiv === 'mens' || baseCleanDiv === "men's") baseMiniLabel = 'M';
+                                else if (baseCleanDiv === 'women' || baseCleanDiv === 'womens' || baseCleanDiv === "women's") baseMiniLabel = 'W';
+                                else if (baseCleanDiv.includes('50')) baseMiniLabel = '50+';
+                                else if (baseCleanDiv.includes('60')) baseMiniLabel = '60+';
+                                else if (baseCleanDiv.includes('23') || baseCleanDiv.includes('u23')) baseMiniLabel = 'U23';
+                                else if (baseCleanDiv.includes('master')) baseMiniLabel = 'Mas';
+                                else if (baseCleanDiv.includes('cup')) baseMiniLabel = 'Cup';
+
+                                existingEntry.Comment = "[" + baseMiniLabel + "] " + existingEntry.Comment.trim();
+                            }
+
+                            // Append the new message only if it isn't an exact duplicate line string
+                            if (!existingEntry.Comment.includes(formattedIncomingComment)) {
+                                existingEntry.Comment += " / " + formattedIncomingComment;
+                            }
+                        }
+                    }
+                } else {
+
+                    // Create a completely new tournament entry token record block
+                    dataset.push({
+                        "SlotKey": slotKey,
+                        "Day": rowDay,
+                        "Date": rowDate,
+                        "Time": rowTime,
+                        "Competition": rowComp,
+                        "Event": rowEvent,
+                        "Divisions": [rowDiv], // Initialize an array collection
+                        "Round": rowRound,
+                        "Comment": rowComment
+                    });
+                }
+            }
+
+        }
+ dataset.sort((a, b) => {
+            if (a.Date !== b.Date) {
+                return a.Date.localeCompare(b.Date);
+            }
+    const getSeconds = (timeStr) => {
+                if (!timeStr) return 0;
+                const parts = timeStr.split(':');
+                const hours = parseInt(parts.at(0), 10) || 0;
+                const minutes = parseInt(parts.at(1), 10) || 0;
+                const seconds = parseInt(parts.at(2), 10) || 0;
+                return (hours * 3600) + (minutes * 60) + seconds;
+            };
+
+
+            return getSeconds(a.Time) - getSeconds(b.Time);
+        });
+        enableInterface();
+    }
+
+    function enableInterface() {
+        document.getElementById('txtSearch').disabled = false;
+        document.getElementById('selDay').disabled = false;
+        document.getElementById('selComp').disabled = false;
+        document.getElementById('selEvent').disabled = false;
+        document.getElementById('selDivision').disabled = false;
+        document.getElementById('selRound').disabled = false;
+
+        populateDropdowns();
+        renderTable(dataset);
+        setupListeners();
+    }
+
+    function populateDropdowns() {
+        const currentDay = document.getElementById('selDay').value;
+        const currentComp = document.getElementById('selComp').value;
+        const currentEvent = document.getElementById('selEvent').value;
+        const currentDiv = document.getElementById('selDivision').value;
+        const currentRound = document.getElementById('selRound').value;
+        const query = document.getElementById('txtSearch').value.toLowerCase();
+
+        const days = new Set();
+        const comps = new Set();
+        const events = new Set();
+        const divisions = new Set();
+        const rounds = new Set();
+
+               dataset.forEach(row => {
+            const matchesSearch = !query || 
+                row.Event.toLowerCase().includes(query) || 
+                row.Round.toLowerCase().includes(query) ||
+                row.Competition.toLowerCase().includes(query) ||
+                (row.Comment && row.Comment.toLowerCase().includes(query));
+
+            if (!matchesSearch) return;
+
+            // Define a clean rule to check if the current row contains the selected division
+            const matchesCurrentDiv = !currentDiv || (row.Divisions && row.Divisions.includes(currentDiv));
+
+            if ((!currentComp || row.Competition === currentComp) &&
+                (!currentEvent || row.Event === currentEvent) &&
+                matchesCurrentDiv &&
+                (!currentRound || row.Round === currentRound)) {
+                if (row.Day && row.Date) {
+                    days.add("Day " + row.Day + "  -  " + row.Date);
+                }
+            }
+
+            if ((!currentDay || row.Day === currentDay) &&
+                (!currentEvent || row.Event === currentEvent) &&
+                matchesCurrentDiv &&
+                (!currentRound || row.Round === currentRound)) {
+                if (row.Competition) comps.add(row.Competition);
+            }
+
+            if ((!currentDay || row.Day === currentDay) &&
+                (!currentComp || row.Competition === currentComp) &&
+                matchesCurrentDiv &&
+                (!currentRound || row.Round === currentRound)) {
+                if (row.Event) events.add(row.Event);
+            }
+
+
+            if ((!currentDay || row.Day === currentDay) &&
+                (!currentComp || row.Competition === currentComp) &&
+                (!currentEvent || row.Event === currentEvent) &&
+                (!currentRound || row.Round === currentRound)) {
+                if (Array.isArray(row.Divisions)) {
+    row.Divisions.forEach(d => { if (d) divisions.add(d); });
+} else if (row.Division) {
+    divisions.add(row.Division);
+}
+
+            }
+
+            if ((!currentDay || row.Day === currentDay) &&
+                (!currentComp || row.Competition === currentComp) &&
+                (!currentEvent || row.Event === currentEvent) &&
+                (!currentDiv || row.Division === currentDiv)) {
+                if (row.Round) rounds.add(row.Round);
+            }
+        });
+
+        resetSelect('selDay', '-- All Days --', Array.from(days).sort(), currentDay);
+        resetSelect('selComp', '-- All Competitions --', Array.from(comps).sort(), currentComp);
+        resetSelect('selEvent', '-- All Categories --', Array.from(events).sort(), currentEvent);
+        resetSelect('selDivision', '-- All Divisions --', Array.from(divisions).sort(), currentDiv);
+        resetSelect('selRound', '-- All Rounds --', Array.from(rounds).sort(), currentRound);
+    }
+
+    function resetSelect(elementId, defaultText, sortedItems, currentValue) {
+        const dropdown = document.getElementById(elementId);
+        dropdown.innerHTML = '<option value="">' + defaultText + '</option>';
+        sortedItems.forEach(item => {
+            const el = document.createElement('option');
+            el.value = item;
+            el.textContent = item;
+            if (item === currentValue) {
+                el.selected = true;
+            }
+            dropdown.appendChild(el);
+        });
+    }
+
+ function renderTable(records) {
+    const tbody = document.getElementById('scheduleRows');
+    const emptyView = document.getElementById('emptyView');
+    const counter = document.getElementById('counter');
+
+    function getDivisionOrderRank(divName) {
+        if (!divName) return 99;
+        let clean = divName.trim().toLowerCase();
+        
+        if (clean === 'open') return 1;
+        if (clean === 'men' || clean === 'mens' || clean === "men's") return 2;
+        if (clean === 'women' || clean === 'womens' || clean === "women's") return 3;
+        if (clean.includes('master')) return 4;
+        if (clean.includes('60')) return 5;
+        if (clean.includes('50')) return 6;
+        if (clean.includes('23') || clean.includes('u23')) return 7;
+        if (clean.includes('cup')) return 8;
+        
+        return 90;
+    }
+    
+    tbody.innerHTML = '';
+
+    if (records.length === 0) {
+        emptyView.textContent = "No schedule items match your current filter settings.";
+        emptyView.style.display = 'block';
+        return;
+    }
+    emptyView.style.display = 'none';
+
+    // Track when a day changes row-by-row
+    let lastDaySeen = null;
+
+    records.forEach(row => {
+        // If the day shifts, create a clean dark calendar header banner row node
+        if (lastDaySeen === null || row.Day !== lastDaySeen) {
+            const dividerTr = document.createElement('tr');
+            
+            // Break the raw CSV string "17/11/2026" apart at each forward slash
+            const dateParts = row.Date.split('/');
+            const dayNum = parseInt(dateParts.at(0), 10);
+            const monthNum = parseInt(dateParts.at(1), 10);
+            const yearNum = parseInt(dateParts.at(2), 10);
+
+            // Pass integers to the constructor. (Months are 0-indexed, so we subtract 1)
+            const parsedCalendarDate = new Date(yearNum, monthNum - 1, dayNum);
+
+            // Ask the native browser window engine for the exact text strings
+            const weekdayName = parsedCalendarDate.toLocaleDateString('en-AU', { weekday: 'long' });
+            const monthName = parsedCalendarDate.toLocaleDateString('en-AU', { month: 'long' });
+
+            // Calculate standard English text endings (st, nd, rd, th)
+            let suffix = 'th';
+            if (dayNum === 1 || dayNum === 21 || dayNum === 31) suffix = 'st';
+            else if (dayNum === 2 || dayNum === 22) suffix = 'nd';
+            else if (dayNum === 3 || dayNum === 23) suffix = 'rd';
+            
+            // 5. Wrap the suffix inside HTML superscript tags
+            const superscriptSuffix = "<sup>" + suffix + "</sup>";
+            
+            // 6. Combine the strings into a single HTML structure snippet block
+            const customDateHtml = "Day " + row.Day + "  –  " + weekdayName + " " + dayNum + superscriptSuffix + " " + monthName + " " + yearNum;
+
+            // Render the snippet block safely using .innerHTML so the browser parses the <sup> tag
+            dividerTr.innerHTML = '<td class="day-header-row" colspan="8" style="background-color: #f8fafc; color: #0f172a; font-weight: bold; padding: 16px; font-size: 0.95rem; text-align: center; border-bottom: 2px solid #e2e8f0; border-top: 2px solid #e2e8f0;">' + customDateHtml + '</td>';
+
+            
+            tbody.appendChild(dividerTr);
+        }
+        
+        // Log down the current day for the next iteration check
+        lastDaySeen = row.Day;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td><code style="font-size:0.95rem;color:#0f172a;">' + row.Time.split(':').slice(0, 2).join(':') + '</code></td>' +
+                       '<td>' + row.Competition + '</td>' +
+                       '<td>' + (typeof getCategoryIconHtml === 'function' ? getCategoryIconHtml(row.Event) : row.Event) + '</td>' +
+                       '<td>' + 
+                           (() => {
+                               const activeDivFilter = document.getElementById('selDivision').value;
+                               let multiIconsHtml = '<div style="display: inline-flex; gap: 6px; flex-wrap: wrap;">';
+                               if (Array.isArray(row.Divisions)) {
+                                   // Sorts your circle icon tracking rows based on your hard-coded rankings list
+                                   const sortedDivs = [...row.Divisions].sort((a, b) => getDivisionOrderRank(a) - getDivisionOrderRank(b));
+                                   sortedDivs.forEach(div => {
+
+                                       if (activeDivFilter && div !== activeDivFilter) return;
+                                       if (typeof getDivisionIconHtml === 'function') {
+                                           multiIconsHtml += getDivisionIconHtml(div);
+                                       }
+                                   });
+                               } else {
+                                   if (typeof getDivisionIconHtml === 'function') {
+                                       multiIconsHtml += getDivisionIconHtml(row.Division);
+                                   }
+                               }
+                               multiIconsHtml += '</div>';
+                               return multiIconsHtml;
+                           })() + 
+                       '</td>' +
+                           '<td>' + row.Round + '</td>' +
+                       '<td>' + 
+                           (() => {
+                               // 1. Fetch the value currently selected in your division dropdown menu
+                               const activeDivFilter = document.getElementById('selDivision').value;
+                               
+                               if (row.Comment && row.Comment.trim() !== "") {
+                                   // Split your flattened comments tracking string into clean individual pieces
+                                   const individualCommentTracks = row.Comment.split(" / ");
+                                   
+                                   // CASE A: A specific division filter is active (e.g., "Men", "Women", "60+")
+                                   if (activeDivFilter && activeDivFilter.trim() !== "") {
+                                       let cleanFilter = activeDivFilter.trim().toLowerCase();
+                                       let matchedCommentText = "";
+
+                                       // Scan the comment parts to extract ONLY the message that matches this filter
+                                       individualCommentTracks.forEach(track => {
+                                           if (track.includes("[")) {
+                                               // Extract the bracket text token tag inside the string label
+                                               let bracketText = track.substring(track.indexOf("[") + 1, track.indexOf("]")).trim().toLowerCase();
+                                               let plainMessageContent = track.substring(track.indexOf("]") + 1).trim();
+
+                                               // Match the abbreviation variants against your active dropdown selection rule
+                                               let matchesCurrentSelection = false;
+                                               if (cleanFilter === 'open' && bracketText === 'o') matchesCurrentSelection = true;
+                                               else if ((cleanFilter === 'men' || cleanFilter === 'mens') && bracketText === 'm') matchesCurrentSelection = true;
+                                               else if ((cleanFilter === 'women' || cleanFilter === 'womens') && bracketText === 'w') matchesCurrentSelection = true;
+                                               else if (cleanFilter.includes('50') && bracketText.includes('50')) matchesCurrentSelection = true;
+                                               else if (cleanFilter.includes('60') && bracketText.includes('60')) matchesCurrentSelection = true;
+                                               else if (cleanFilter.includes('23') && bracketText.includes('23')) matchesCurrentSelection = true;
+                                               else if (cleanFilter.includes('master') && bracketText === 'mas') matchesCurrentSelection = true;
+                                               else if (cleanFilter.includes('cup') && bracketText === 'cup') matchesCurrentSelection = true;
+
+                                               if (matchesCurrentSelection) {
+                                                   matchedCommentText = plainMessageContent;
+                                               }
+                                           }
+                                       });
+
+                                       // If a direct division match was found, print the text ONLY (with zero icons)
+                                       if (matchedCommentText !== "") {
+                                           return matchedCommentText;
+                                       }
+                                       
+                                       // Fallback: If this is a standalone row card without brackets, print it cleanly
+                                       if (!row.Comment.includes("[")) {
+                                           return row.Comment;
+                                       }
+                                       return ""; // Hide other comments completely
+                                   }
+
+                                   // CASE B: NO FILTER SELECTED (Global Unfiltered Grid Card Presentation)
+                                                                      // CASE B: NO FILTER SELECTED (Global Unfiltered Grid Card Presentation)
+                                   let formattedCommentHtml = "";
+
+                                   // 1. Group check: Extract unique text messages and their matching division labels
+                                   const commentMap = {}; // Tracks: text_message -> array of brackets [M, O, W]
+                                   
+                                   individualCommentTracks.forEach(track => {
+                                       if (track.includes("[")) {
+                                           let label = track.substring(track.indexOf("[") + 1, track.indexOf("]")).trim();
+                                           let message = track.substring(track.indexOf("]") + 1).trim();
+                                           
+                                           if (message && message !== "") {
+                                               if (!commentMap[message]) {
+                                                   commentMap[message] = [];
+                                               }
+                                               if (!commentMap[message].includes(label)) {
+                                                   commentMap[message].push(label);
+                                               }
+                                           }
+                                       }
+                                   });
+
+                                   // 2. Build the final display string based on what we found
+                                   const messageKeys = Object.keys(commentMap);
+                                   const formattedSegments = [];
+
+                                   messageKeys.forEach(messageText => {
+                                       let iconsGroupHtml = "";
+                                       
+                                                                             // Sorts your combined comments icons so they align identically to your columns order
+                                       const sortedCommentDivs = [...commentMap[messageText]].sort((a, b) => getDivisionOrderRank(a) - getDivisionOrderRank(b));
+                                       
+                                       sortedCommentDivs.forEach(rawDivCode => {
+
+                                           const clean = rawDivCode.toLowerCase();
+                                           let badgeColorStyle = "border: 1.5px solid #0000ff; background-color: #b9c2f7; color: #0000ff;"; // Default Blue
+                                           
+                                           if (clean === 'w' || clean === 'women' || clean === 'womens' || clean.includes('50')) {
+                                               badgeColorStyle = "border: 1.5px solid #ff00ff; background-color: #fbcbfb; color: #ff00ff;"; // Pink
+                                           } else if (clean.includes('master') || clean.includes('60')) {
+                                               badgeColorStyle = "border: 1.5px solid #008000; background-color: #b7dfb7; color: #008000;"; // Green
+                                           } else if (clean.includes('cup')) {
+                                               badgeColorStyle = "border: 1.5px solid #ffff00; background-color: #fffbcf; color: #999900;"; // Yellow
+                                           }
+
+                                           iconsGroupHtml += '<span class="div-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; font-weight: bold; font-size: 0.6rem; text-transform: uppercase; margin: 0 4px 0 0; vertical-align: middle; ' + badgeColorStyle + '">' + rawDivCode + '</span>';
+                                       });
+
+                                       // Suffix the text message directly next to its gathered icon stack
+                                       formattedSegments.push(iconsGroupHtml + " " + messageText);
+                                   });
+
+                                   // 3. Connect different messages (if any) using your clean central dot bullets
+                                   formattedCommentHtml = formattedSegments.join('<span style="color: #cbd5e1; margin: 0 8px; font-weight: bold;">•</span>');
+                                   
+                                   // Fallback block if the string formatting didn't catch standard brackets
+                                   if (formattedCommentHtml === "" && !row.Comment.includes("[")) {
+                                       return row.Comment;
+                                   }
+
+                                   return formattedCommentHtml;
+
+                               }
+                               return "";
+                           })() + 
+                       '</td>';
+
+        // If the next row happens at a different match time, apply a thin, clean dashed divider line
+
+
+        // If the next row happens at a different match time, apply a thin, clean dashed divider line
+
+
+        // If the next row happens at a different match time, apply a thin, clean dashed divider line
+        const currentIndex = records.indexOf(row);
+        const nextRow = records.at(currentIndex + 1);
+        if (nextRow && nextRow.Day === row.Day && nextRow.Time !== row.Time) {
+            tr.style.borderBottom = '1.5px dashed #cbd5e1';
+        }
+
+        tbody.appendChild(tr);
+    });
+}
+
+
+
+    function executeFilter() {
+        const query = document.getElementById('txtSearch').value.toLowerCase();
+        const dayFilter = document.getElementById('selDay').value;
+        const compFilter = document.getElementById('selComp').value;
+        const eventFilter = document.getElementById('selEvent').value;
+        const divisionFilter = document.getElementById('selDivision').value;
+        const roundFilter = document.getElementById('selRound').value;
+
+        const filtered = dataset.filter(row => {
+            const matchesDay = !dayFilter || row.Day === dayFilter;
+            const matchesComp = !compFilter || row.Competition === compFilter;
+            const matchesEvent = !eventFilter || row.Event === eventFilter;
+            const matchesDiv = !divisionFilter || (row.Divisions ? row.Divisions.includes(divisionFilter) : row.Division === divisionFilter);
+            const matchesRound = !roundFilter || row.Round === roundFilter;
+            
+            const matchesSearch = !query || 
+                row.Event.toLowerCase().includes(query) || 
+                row.Round.toLowerCase().includes(query) ||
+                row.Competition.toLowerCase().includes(query) ||
+                row.Division.toLowerCase().includes(query) ||
+                (row.Comment && row.Comment.toLowerCase().includes(query));
+
+            return matchesDay && matchesComp && matchesEvent && matchesDiv && matchesRound && matchesSearch;
+        });
+
+        renderTable(filtered);
+    }
+
+    function handleInterfaceUpdate() {
+        executeFilter();
+        populateDropdowns();
+    }
+
+    function setupListeners() {
+        document.getElementById('txtSearch').oninput = handleInterfaceUpdate;
+        document.getElementById('selDay').onchange = handleInterfaceUpdate;
+        document.getElementById('selComp').onchange = handleInterfaceUpdate;
+        document.getElementById('selEvent').onchange = handleInterfaceUpdate;
+        document.getElementById('selDivision').onchange = handleInterfaceUpdate;
+        document.getElementById('selRound').onchange = handleInterfaceUpdate;
+    }
+
+function getDivisionIconHtml(divisionText) {
+    if (!divisionText) return '';
+    
+    const cleanText = divisionText.trim().toLowerCase();
+    
+    // 1. Pink Theme (Women & Over 50's Women)
+    if (cleanText === "women") {
+        return '<span class="div-icon icon-pink">W</span>';
+    }
+    if (cleanText.includes("50") && cleanText.includes("women")) {
+        return '<span class="div-icon icon-pink">50+</span>';
+    }
+    
+    // 2. Blue Theme (Open & Under 23's)
+    if (cleanText === "open") {
+        return '<span class="div-icon icon-blue">O</span>';
+    }
+    if (cleanText === "men") {
+        return '<span class="div-icon icon-blue">M</span>';
+    }
+    if (cleanText.includes("23") || cleanText.includes("u23")) {
+        return '<span class="div-icon icon-blue">U23</span>';
+    }
+    
+    // 3. Green Theme (Masters & Over 60's)
+    if (cleanText.includes("master")) {
+        return '<span class="div-icon icon-green">M</span>';
+    }
+    if (cleanText.includes("60")) {
+        return '<span class="div-icon icon-green">60+</span>';
+    }
+    if (cleanText === "over 50's" || cleanText === "over 50s") {
+        return '<span class="div-icon icon-pink">50+</span>';
+    }
+
+    // 4. Yellow Theme (Australia Cup / Cup Divisions)
+    if (cleanText.includes("cup")) {
+        return '<span class="div-icon icon-yellow">CUP</span>';
+    }
+
+    // Fallback if no specific condition matches
+    return '';
+}
+
+
+</script>
+</body>
+</html>
