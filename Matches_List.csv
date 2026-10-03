@@ -181,7 +181,7 @@ Day,Date,Time,Competition,Event,Division,Round,Comment
 9,26/11/2026,10:00:00,Nationals,Teams,Australia Cup,Semi Final,
 9,26/11/2026,20:00:00,Nationals,Teams,Australia Cup,Preliminary Finals,
 10,27/11/2026,10:00:00,Nationals,Teams,Australia Cup,Grand Final,
-0,17/11/2026,17:00:00,Nationals,Teams,Masters,Manager's Meeting,Test
+0,17/11/2026,17:00:00,Nationals,Teams,Masters,Manager's Meeting,
 0,17/11/2026,20:00:00,Nationals,Teams,Masters,Opening Ceremony,
 1,18/11/2026,9:30:00,Nationals,Teams,Masters,Full Group Photo,
 1,18/11/2026,10:00:00,Nationals,Teams,Masters,Round 1,
@@ -206,7 +206,7 @@ Day,Date,Time,Competition,Event,Division,Round,Comment
 9,26/11/2026,10:00:00,Nationals,Teams,Masters,Semi Final,
 9,26/11/2026,20:00:00,Nationals,Teams,Masters,Preliminary Finals,
 10,27/11/2026,16:00:00,Nationals,Teams,Masters,Grand Final,
-0,17/11/2026,17:00:00,Nationals,Teams,Open,Manager's Meeting,Test
+0,17/11/2026,17:00:00,Nationals,Teams,Open,Manager's Meeting,
 0,17/11/2026,20:00:00,Nationals,Teams,Open,Opening Ceremony,
 1,18/11/2026,9:30:00,Nationals,Teams,Open,Full Group Photo,
 1,18/11/2026,10:00:00,Nationals,Teams,Open,Team Photos,
@@ -231,7 +231,7 @@ Day,Date,Time,Competition,Event,Division,Round,Comment
 9,26/11/2026,10:00:00,Nationals,Teams,Open,Semi Final,
 9,26/11/2026,20:00:00,Nationals,Teams,Open,Preliminary Finals,
 10,27/11/2026,19:30:00,Nationals,Teams,Open,Grand Final,
-0,17/11/2026,17:00:00,Nationals,Teams,Over 50 Women,Manager's Meeting,Testing
+0,17/11/2026,17:00:00,Nationals,Teams,Over 50 Women,Manager's Meeting,
 0,17/11/2026,20:00:00,Nationals,Teams,Over 50 Women,Opening Ceremony,
 1,18/11/2026,9:30:00,Nationals,Teams,Over 50 Women,Full Group Photo,
 1,18/11/2026,10:00:00,Nationals,Teams,Over 50 Women,Round 1,
