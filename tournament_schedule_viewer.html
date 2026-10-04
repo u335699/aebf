@@ -19,7 +19,7 @@
         header {
             margin-bottom: 24px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
@@ -76,6 +76,7 @@
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+
         }
         table {
             width: 100%;
@@ -124,7 +125,68 @@
 .icon-green  { border: 3px solid #008000; background-color: #b7dfb7; color: #008000; }
 .icon-yellow { border: 3px solid #ffff00; background-color: #fffbcf; color: #999900; }
 
+.legend-mobile-btn,
+.legend-modal {
+display: none;
+}
+
 @media screen and (max-width: 1100px) {
+
+    .legend-mobile-btn {
+        display: block !important;
+        width: 100%;
+        margin-top: 12px;
+        padding: 10px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #0f172a;
+		font-weight: 000;
+    }
+
+    .legend-desktop {
+        display: none !important;
+    }
+
+    .legend-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 9999;
+    }
+
+    .legend-modal-content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: white;
+        border-radius: 12px;
+        padding: 12px;
+    }
+
+    .legend-close {
+        width: 100%;
+        margin-top: 12px;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #0f172a;
+        color: white;
+    }
+
+.legend-filter-item label {
+    visibility: hidden;
+}
+
+.legend-mobile-btn {
+    height: 42px;
+    margin-top: 0 !important;
+}
+
     /* 1. CLEAN HIDE FOR DESKTOP & REPEATED HEADERS (Goodbye empty lozenges!) */
     table thead,
     table tbody tr:has(th) {
@@ -166,7 +228,7 @@
         top: 42px !important;        /* Clamps right underneath the text height boundaries of the header title */
         z-index: 140 !important;      /* Layers perfectly between title layer and schedule card entries layout */
         background-color: #ffffff !important;
-        margin: 0 -12px 16px -12px !important; /* Expands background box edge-to-edge flush across screen bounds */
+        margin: 0 -12px 16px -12px !important;
         padding: 16px !important;
         border-radius: 0 0 16px 16px !important; /* Rounds only the bottom lip edges for a native smartphone app design look */
         box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important; /* Polished box boundary indicator shadow accent line */
@@ -176,9 +238,11 @@
     /* 4. TIGHT DYNAMIC FILTERS POSITIONING MATRIX TRACK ROWS */
     .filter-grid {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important; /* Pairs input elements cleanly into 2 columns */
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important; /* Pairs input elements cleanly into 2 columns */
         gap: 10px 12px !important;
     }
+
+
 
     /* Transform each match data entry cleanly into an isolated card module row block */
     table tbody tr:not(:has([colspan])) {
@@ -291,7 +355,7 @@
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
-        border-radius: 0px !important;
+        border-radius: 12px !important;
         text-align: center !important;
         padding: 16px !important;
         text-transform: none !important; 
@@ -299,28 +363,6 @@
     }
 }
 
-
-        /* Container holding all the legend items */
-.legend-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile devices */
-    gap: 12px; /* Spacing between the items */
-    margin-top: 10px;
-}
-
-/* Individual legend items */
-.legend-item {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-/* Switches to 4 columns on tablets and desktops */
-@media (min-width: 768px) {
-    .legend-container {
-        grid-template-columns: repeat(4, 1fr); 
-    }
-}
 
 
 
@@ -332,7 +374,7 @@
 <div class="container">
     <header>
         <div>
-            <h1>Tournament Schedule Viewer</h1>
+            <h1>Tournament Schedule</h1>
             
         </div>
 
@@ -370,6 +412,16 @@
                     <option value="">-- All Divisions --</option>
                 </select>
             </div>
+			
+<div class="filter-item legend-filter-item">
+    <label>&nbsp;</label>
+    <button id="legendButton"
+            class="legend-mobile-btn"
+            type="button">
+        Legend
+    </button>
+</div>			
+			
             <div class="filter-item" style="display: none;">
                 <label for="selRound">Round</label>
                 <select id="selRound" disabled>
@@ -377,15 +429,15 @@
                 </select>
             </div>
         </div>
-    </div>
+		
+
 
 <!-- Replace your current legend block with this 4-column fluid layout -->
-<div style="background: #ffffff; padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 16px;">
+<div id="divisionLegend"
+     class="legend-desktop"
+     style="background: #ffffff; padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-top: 20px; margin-bottom: 24px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 16px;">
     
-    <!-- Title Section -->
-    <div style="font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; text-align: center;">
-        Division Legend
-    </div>
+   
     
     <!-- Responsive CSS Flex Grid Layout -->
     <div style="display: flex; flex-wrap: wrap; gap: 16px 12px; max-width: 900px; width: 100%; margin: 0 auto; justify-content: center;">
@@ -425,7 +477,7 @@
 
     </div>
 </div>
-
+</div>
 
     <div class="table-container">
         <table>
@@ -444,7 +496,21 @@
         <div id="emptyView" class="no-records">No records found.</div>
     </div>
 </div>
-
+<div id="legendModal" class="legend-modal">
+ 
+<div class="legend-modal-content">
+ 
+<div id="legendContent"></div>
+ 
+<button id="closeLegend"
+class="legend-close"
+type="button">
+Close
+</button>
+ 
+</div>
+ 
+</div>
 <script>
     let dataset = [];
 
@@ -1020,6 +1086,32 @@ function getDivisionIconHtml(divisionText) {
     // Fallback if no specific condition matches
     return '';
 }
+
+document.getElementById('legendButton')?.addEventListener('click', () => {
+
+    document.getElementById('legendContent').innerHTML =
+        document.getElementById('divisionLegend').innerHTML;
+
+    document.getElementById('legendModal').style.display = 'block';
+
+});
+
+document.getElementById('closeLegend')?.addEventListener('click', () => {
+
+    document.getElementById('legendModal').style.display = 'none';
+
+});
+
+document.getElementById('legendModal')?.addEventListener('click', (e) => {
+
+    if (e.target.id === 'legendModal') {
+
+        document.getElementById('legendModal').style.display = 'none';
+
+    }
+
+});
+
 
 
 </script>
