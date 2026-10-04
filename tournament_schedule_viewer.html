@@ -13,6 +13,7 @@ background-image: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2023/
 background-repeat: repeat;
 background-size: auto;
 background-position: center;
+background-attachment: fixed;
             color: #1f2937;
         }
         .container {
@@ -225,7 +226,7 @@ display: none;
     /* Freeze the Page Title text to the top edge of your glass window screen viewport */
     header {
         position: sticky !important;
-        top: -12px !important;       /* Syncs past body padding walls to latch flush at the glass top margin edge */
+        top: 12px !important;       /* Syncs past body padding walls to latch flush at the glass top margin edge */
         z-index: 150 !important;      /* Anchors title block securely on top display layer plane */
  
         margin: 0 -12px !important;   /* Spans background color fully flush edge-to-edge across screen width */
@@ -236,15 +237,21 @@ display: none;
     /* Freeze the filter dropdown container board right underneath the page title block */
     .filter-card {
         position: sticky !important;
-        top: 42px !important;        /* Clamps right underneath the text height boundaries of the header title */
+        top: 165px !important;        /* Clamps right underneath the text height boundaries of the header title */
         z-index: 140 !important;      /* Layers perfectly between title layer and schedule card entries layout */
         background-color: #ffffff !important;
         padding: 16px !important;
         border-radius: 16px !important; /* Rounds only the bottom lip edges for a native smartphone app design look */
         box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important; /* Polished box boundary indicator shadow accent line */
         box-sizing: border-box !important;
+background-color: rgba(235, 228, 255, 0.94) !important;
+backdrop-filter: blur(4px);
+		
 		
     }
+
+
+
 
     /* 4. TIGHT DYNAMIC FILTERS POSITIONING MATRIX TRACK ROWS */
     .filter-grid {
