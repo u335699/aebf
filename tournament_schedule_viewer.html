@@ -149,6 +149,14 @@ display: none;
 
 @media screen and (max-width: 1100px) {
 
+.event-logo.compact {
+width: 50px !important;
+position: fixed;
+top: 10px;
+right: 10px;
+z-index: 1000;
+}
+
 header {
 position: sticky !important;
 top: 12px !important;
@@ -1159,12 +1167,15 @@ document.getElementById('legendModal')?.addEventListener('click', (e) => {
 
 document.querySelector('.event-logo').addEventListener('click', () => {
  
+const logo = document.querySelector('.event-logo');
 const filterCard = document.querySelector('.filter-card');
  
-if (filterCard.style.display === 'none') {
-filterCard.style.display = '';
-} else {
+logo.classList.toggle('compact');
+ 
+if (logo.classList.contains('compact')) {
 filterCard.style.display = 'none';
+} else {
+filterCard.style.display = '';
 }
  
 });
