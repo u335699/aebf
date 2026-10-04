@@ -9,7 +9,10 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 24px;
-            background-color: #f3f4f6;
+background-image: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/bg_purple_1.jpg');
+background-repeat: repeat;
+background-size: auto;
+background-position: center;
             color: #1f2937;
         }
         .container {
@@ -24,6 +27,14 @@
             flex-wrap: wrap;
             gap: 15px;
         }
+		
+		
+		.event-logo {
+display: block;
+width: 120px;
+height: auto;
+margin: 0 auto 12px auto;
+}
         h1 {
             color: #0f172a;
             margin: 0 0 4px 0;
@@ -201,7 +212,7 @@ display: none;
     /* 2. FORCE WORKSPACE CONTAINERS FULL WIDTH SANS SCROLL GAP MARGINS */
     body {
         padding: 12px !important; /* Premium comfortable mobile workspace border spacing padding */
-        background-color: #f3f4f6 !important;
+
     }
     table, tbody {
         display: block !important;
@@ -216,7 +227,7 @@ display: none;
         position: sticky !important;
         top: -12px !important;       /* Syncs past body padding walls to latch flush at the glass top margin edge */
         z-index: 150 !important;      /* Anchors title block securely on top display layer plane */
-        background-color: #f3f4f6 !important; /* Solid matching gray background completely masks scrolling rows behind it */
+ 
         margin: 0 -12px !important;   /* Spans background color fully flush edge-to-edge across screen width */
         padding: 12px 12px 6px 12px !important;
         box-sizing: border-box !important;
@@ -228,11 +239,11 @@ display: none;
         top: 42px !important;        /* Clamps right underneath the text height boundaries of the header title */
         z-index: 140 !important;      /* Layers perfectly between title layer and schedule card entries layout */
         background-color: #ffffff !important;
-        margin: 0 -12px 16px -12px !important;
         padding: 16px !important;
-        border-radius: 0 0 16px 16px !important; /* Rounds only the bottom lip edges for a native smartphone app design look */
+        border-radius: 16px !important; /* Rounds only the bottom lip edges for a native smartphone app design look */
         box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important; /* Polished box boundary indicator shadow accent line */
         box-sizing: border-box !important;
+		
     }
 
     /* 4. TIGHT DYNAMIC FILTERS POSITIONING MATRIX TRACK ROWS */
@@ -372,13 +383,13 @@ display: none;
 <body>
 
 <div class="container">
-    <header>
-        <div>
-            <h1>Tournament Schedule</h1>
-            
-        </div>
+<header>
+<img
+src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-senior-championships-2026.png"
+alt="AEBF Senior Championships 2026"
+class="event-logo">
 
-    </header>
+</header>
 
     <div class="filter-card">
         <div class="filter-grid">
