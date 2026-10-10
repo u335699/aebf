@@ -63,6 +63,37 @@ cursor: pointer;
     opacity: 0;
 }
 
+
+
+.day-header-row {
+    position: relative;
+}
+
+.day-header-row::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 32px;
+    background: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/mitchell_logo_exact_border.png') center center / contain no-repeat;
+}
+
+.day-header-row::after {
+    content: "";
+    position: absolute;
+    right: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 32px;
+    background: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/cls_logo_exact_border.png') center center / contain no-repeat;
+}
+
+
+
+
 .heyballSponsors {
     display: none;
 }
@@ -257,6 +288,14 @@ object-fit: contain;
     pointer-events: none;
 }
 
+.day-header-row::before {
+        left: 7%;
+    }
+
+    .day-header-row::after {
+        right: 7%;
+    }
+
 
 .event-logo.compact {
 width: 50px !important;
@@ -308,6 +347,7 @@ header {
     font-size: 12px !important;
     text-align: center !important;
 }
+
 
 
     .legend-mobile-btn {
@@ -1480,8 +1520,8 @@ return iconPrefix + ' ' + formattedCommentHtml;
             const parsedCalendarDate = new Date(yearNum, monthNum - 1, dayNum);
 
             // Ask the native browser window engine for the exact text strings
-            const weekdayName = parsedCalendarDate.toLocaleDateString('en-AU', { weekday: 'long' });
-            const monthName = parsedCalendarDate.toLocaleDateString('en-AU', { month: 'long' });
+            const weekdayName = parsedCalendarDate.toLocaleDateString('en-AU', { weekday: 'short' });
+            const monthName = parsedCalendarDate.toLocaleDateString('en-AU', { month: 'short' });
 
             // Calculate standard English text endings (st, nd, rd, th)
             let suffix = 'th';
@@ -1493,7 +1533,7 @@ return iconPrefix + ' ' + formattedCommentHtml;
             const superscriptSuffix = "<sup>" + suffix + "</sup>";
             
             // 6. Combine the strings into a single HTML structure snippet block
-            const customDateHtml = "Day " + row.Day + "  –  " + weekdayName + " " + dayNum + superscriptSuffix + " " + monthName + " " + yearNum;
+            const customDateHtml = "Day " + row.Day + "  •  " + weekdayName + " " + dayNum + superscriptSuffix + " " + monthName + " " + yearNum;
 
             // Render the snippet block safely using .innerHTML so the browser parses the <sup> tag
             dividerTr.innerHTML = '<td class="day-header-row" colspan="8" style="background-color: #f8fafc; color: #0f172a; font-weight: bold; padding: 16px; font-size: 0.95rem; text-align: center; border-bottom: 2px solid #e2e8f0; border-top: 2px solid #e2e8f0;">' + customDateHtml + '</td>';
