@@ -1,25 +1,25 @@
 Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
-2,19/11/2026,9:00:00,Bar Box,Singles,Open,Last 128 - Session 1,Session for players L128 clashing on 21<sup>st</sup>,
-2,19/11/2026,11:00:00,Bar Box,Singles,Open,Last 128 - Session 2,Session for players L128 clashing on 21<sup>st</sup>,
-2,19/11/2026,13:00:00,Bar Box,Singles,Open,Last 128 - Session 3,Session for players L128 clashing on 21<sup>st</sup>,
-2,19/11/2026,15:00:00,Bar Box,Singles,Open,Last 128 - Session 4,Session for players L128 clashing on 21<sup>st</sup>,
-4,21/11/2026,11:00:00,Bar Box,Singles,Open,Last 128 - Session 5,,
-4,21/11/2026,13:00:00,Bar Box,Singles,Open,Last 128 - Session 6,,
-4,21/11/2026,15:00:00,Bar Box,Singles,Open,Last 128 - Session 7,,
-5,22/11/2026,9:00:00,Bar Box,Singles,Open,Last 64 - Session 1,,
-5,22/11/2026,11:00:00,Bar Box,Singles,Open,Last 64 - Session 2,,
+2,19/11/2026,9:00:00,Bar Box,Singles,Open,Last 128<small><small><i> (Session 1)</i></small></small>,Session for players L128 clashing on 21<sup>st</sup>,
+2,19/11/2026,11:00:00,Bar Box,Singles,Open,Last 128<small><small><i> (Session 2)</i></small></small>,Session for players L128 clashing on 21<sup>st</sup>,
+2,19/11/2026,13:00:00,Bar Box,Singles,Open,Last 128<small><small><i> (Session 3)</i></small></small>,Session for players L128 clashing on 21<sup>st</sup>,
+2,19/11/2026,15:00:00,Bar Box,Singles,Open,Last 128<small><small><i> (Session 4)</i></small></small>,Session for players L128 clashing on 21<sup>st</sup>,
+4,21/11/2026,11:00:00,Bar Box,Singles,Open,Last 128<small><small><i> (Session 5)</i></small></small>,,
+4,21/11/2026,13:00:00,Bar Box,Singles,Open,Last 128<small><small><i> (Session 6)</i></small></small>,,
+4,21/11/2026,15:00:00,Bar Box,Singles,Open,Last 128<small><small><i> (Session 7)</i></small></small>,,
+5,22/11/2026,9:00:00,Bar Box,Singles,Open,Last 64<small><small><i> (Session 1)</i></small></small>,,
+5,22/11/2026,11:00:00,Bar Box,Singles,Open,Last 64<small><small><i> (Session 2)</i></small></small>,,
 5,22/11/2026,13:00:00,Bar Box,Singles,Open,Last 32,,
 5,22/11/2026,15:00:00,Bar Box,Singles,Open,Last 16,,
 5,22/11/2026,18:00:00,Bar Box,Singles,Open,Quarter Final,,
 5,22/11/2026,19:30:00,Bar Box,Singles,Open,Semi Final,,
 5,22/11/2026,21:00:00,Bar Box,Singles,Open,Grand Final,,
-3,20/11/2026,9:00:00,Bar Box,Teams,Open,Group Stage - R1 (Morning),,Possible clash with Heyball.</br><i>Affected players will play evening session</i>
-3,20/11/2026,11:00:00,Bar Box,Teams,Open,Group Stage - R2 (Morning),,Possible clash with Heyball.</br><i>Affected players will play evening session</i>
-3,20/11/2026,13:00:00,Bar Box,Teams,Open,Group Stage - R3 (Morning),,Possible clash with Heyball.</br><i>Affected players will play evening session</i>
-3,20/11/2026,16:00:00,Bar Box,Teams,Open,Group Stage - R1 (Evening),,Possible clash with Heyball.</br><i>Move match to 15:00 if player makes Heyball final</i>
-3,20/11/2026,18:00:00,Bar Box,Teams,Open,Group Stage - R2 (Evening),,Possible clash with Heyball.</br><i>Move match to 19:20 if player makes Heyball final</i>
-3,20/11/2026,20:00:00,Bar Box,Teams,Open,Group Stage - R3 (Evening),,Possible clash with Heyball.</br><i>Move match to 21:20 if player makes Heyball final</i>
-4,21/11/2026,9:00:00,Bar Box,Teams,Open,Last 16,,
+3,20/11/2026,9:00:00,Bar Box,Teams,Open,Group Stage - Round 1 <small><small><i> (Morning)</i></small></small>,,Possible clash with Heyball.<br><small><i>Affected teams will play evening session</i></small>
+3,20/11/2026,11:00:00,Bar Box,Teams,Open,Group Stage - Round 2 <small><small><i> (Morning)</i></small></small>,,Possible clash with Heyball.<br><small><i>Affected teams will play evening session</i></small>
+3,20/11/2026,13:00:00,Bar Box,Teams,Open,Group Stage - Round 3 <small><small><i> (Morning)</i></small></small>,,Possible clash with Heyball.<br><small><i>Affected teams will play evening session</i></small>
+3,20/11/2026,16:00:00,Bar Box,Teams,Open,Group Stage - Round 1 <small><small><i> (Evening)</i></small></small>,,Possible clash with Heyball.<br><small><i>Move match to 15:00 if player makes Heyball final</i></small>
+3,20/11/2026,18:00:00,Bar Box,Teams,Open,Group Stage - Round 2 <small><small><i> (Evening)</i></small></small>,,Possible clash with Heyball.<br><small><i>Move match to 19:20 if player makes Heyball final</i></small>
+3,20/11/2026,20:00:00,Bar Box,Teams,Open,Group Stage - Round 3 <small><small><i> (Evening)</i></small></small>,,Possible clash with Heyball.<br><small><i>Move match to 21:20 if player makes Heyball final</i></small>
+4,21/11/2026,9:00:00,Bar Box,Teams,Open,Last 16,Two qualifying teams from each group,
 4,21/11/2026,11:00:00,Bar Box,Teams,Open,Quarter Final,,
 4,21/11/2026,13:00:00,Bar Box,Teams,Open,Semi Final,,
 4,21/11/2026,15:00:00,Bar Box,Teams,Open,Grand Final,,
@@ -46,10 +46,10 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 3,20/11/2026,9:00:00,Nationals,6 Red,Masters,Round 1,,
 9,26/11/2026,9:00:00,Nationals,6 Red,Masters,Semi Final,,
 10,27/11/2026,18:00:00,Nationals,6 Red,Masters,Grand Final,,
-2,19/11/2026,9:00:00,Nationals,Doubles,Open,Last 128,As many as required,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
+2,19/11/2026,9:00:00,Nationals,Doubles,Open,Last 128,As many as required,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
 9,26/11/2026,9:00:00,Nationals,6 Red,Open,Semi Final,,
 10,27/11/2026,18:00:00,Nationals,6 Red,Open,Grand Final,,
-2,19/11/2026,10:30:00,Nationals,Doubles,Open,Last 64,,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
+2,19/11/2026,10:30:00,Nationals,Doubles,Open,Last 64,,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
 9,26/11/2026,9:00:00,Nationals,6 Red,Women,Semi Final,,
 10,27/11/2026,18:00:00,Nationals,6 Red,Women,Grand Final,,
 2,19/11/2026,9:00:00,Nationals,Doubles,Masters,Last 64,As many as required,
@@ -58,17 +58,17 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 3,20/11/2026,16:30:00,Nationals,Doubles,Masters,Quarter-Finals,,
 3,20/11/2026,18:00:00,Nationals,Doubles,Masters,Semi Final,,
 9,26/11/2026,15:30:00,Nationals,Doubles,Masters,Grand Final,,
-2,19/11/2026,12:30:00,Nationals,Doubles,Open,Last 32,,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
-2,19/11/2026,14:00:00,Nationals,Doubles,Open,Last 16,,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
-2,19/11/2026,10:30:00,Nationals,Doubles,Women,Last 64,As many as required,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
-2,19/11/2026,12:30:00,Nationals,Doubles,Women,Last 32,,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
-2,19/11/2026,14:00:00,Nationals,Doubles,Women,Last 16,,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
+2,19/11/2026,12:30:00,Nationals,Doubles,Open,Last 32,,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
+2,19/11/2026,14:00:00,Nationals,Doubles,Open,Last 16,,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
+2,19/11/2026,10:30:00,Nationals,Doubles,Women,Last 64,As many as required,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
+2,19/11/2026,12:30:00,Nationals,Doubles,Women,Last 32,,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
+2,19/11/2026,14:00:00,Nationals,Doubles,Women,Last 16,,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
 2,19/11/2026,22:00:00,Nationals,Plate,Open,Last 64,,
 9,26/11/2026,15:30:00,Nationals,Doubles,Open,Grand Final,,
-2,19/11/2026,16:00:00,Nationals,Teams,Open,Round 5,,Possible clash with Heyball.</br><i>Individual matches may be delayed up to 60 minutes</i>
+2,19/11/2026,16:00:00,Nationals,Teams,Open,Round 5,,Possible clash with Heyball.<br><small><i>Individual matches may be delayed up to 60 minutes</i></small>
 2,19/11/2026,18:15:00,Nationals,Teams,Open,Round 6,,
 2,19/11/2026,20:30:00,Nationals,Teams,Open,Round 7,,
-2,19/11/2026,16:00:00,Nationals,Teams,Women,Round 4,,Possible clash with Heyball.</br><i>Individual matches may be delayed up to 60 minutes</i>
+2,19/11/2026,16:00:00,Nationals,Teams,Women,Round 4,,Possible clash with Heyball.<br><small><i>Individual matches may be delayed up to 60 minutes</i></small>
 2,19/11/2026,18:15:00,Nationals,Teams,Women,Round 5,,
 9,26/11/2026,15:30:00,Nationals,Doubles,Women,Grand Final,,
 3,20/11/2026,19:30:00,Nationals,Plate,Masters,Last 128,As many as required,
@@ -82,10 +82,10 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 1,18/11/2026,21:15:00,Nationals,Plate,Open,Last 256,As many as required,
 1,18/11/2026,22:15:00,Nationals,Plate,Open,Last 128,Continued,
 2,19/11/2026,20:30:00,Nationals,Teams,Women,Round 6,,
-4,21/11/2026,9:00:00,Nationals,Plate,Open,Last 32,,Possible clash with Bar Box.</br><i>AEBF TD will manage affected matches</i>
-4,21/11/2026,10:30:00,Nationals,Plate,Open,Last 16,,Possible clash with Bar Box.</br><i>AEBF TD will manage affected matches</i>
-4,21/11/2026,12:00:00,Nationals,Plate,Open,Quarter-Finals,,Possible clash with Bar Box.</br><i>AEBF TD will manage affected matches</i>
-4,21/11/2026,14:00:00,Nationals,Plate,Open,Semi Final,,Possible clash with Bar Box.</br><i>AEBF TD will manage affected matches</i>
+4,21/11/2026,9:00:00,Nationals,Plate,Open,Last 32,,Possible clash with Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
+4,21/11/2026,10:30:00,Nationals,Plate,Open,Last 16,,Possible clash with Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
+4,21/11/2026,12:00:00,Nationals,Plate,Open,Quarter-Finals,,Possible clash with Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
+4,21/11/2026,14:00:00,Nationals,Plate,Open,Semi Final,,Possible clash with Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
 8,25/11/2026,18:00:00,Nationals,Plate,Open,Grand Final,,
 1,18/11/2026,19:00:00,Nationals,Plate,Women,Last 128,As many as required,
 3,20/11/2026,9:00:00,Nationals,6 Red,Open,Round 1,,
@@ -144,13 +144,13 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 9,26/11/2026,12:30:00,Nationals,Singles,Over 60,Quarter Final,,
 9,26/11/2026,17:30:00,Nationals,Singles,Over 60,Semi Final,,
 10,27/11/2026,12:30:00,Nationals,Singles,Over 60,Grand Final,,
-3,20/11/2026,13:00:00,Nationals,Singles,Under 23,Last 32,,Possible clash with Bar Box.</br><i>AEBF TD will manage affected matches</i>
+3,20/11/2026,13:00:00,Nationals,Singles,Under 23,Last 32,,Possible clash with Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
 6,23/11/2026,9:00:00,Nationals,Singles,Under 23,Last 16,,
 9,26/11/2026,12:30:00,Nationals,Singles,Under 23,Quarter Final,,
 9,26/11/2026,17:30:00,Nationals,Singles,Under 23,Semi Final,,
 10,27/11/2026,12:30:00,Nationals,Singles,Under 23,Grand Final,,
-3,20/11/2026,16:30:00,Nationals,Doubles,Open,Quarter-Finals,,Possible clash with Heyball or Bar Box.</br><i>AEBF TD will manage affected matches</i>
-3,20/11/2026,18:00:00,Nationals,Doubles,Open,Semi Final,,Possible clash with Heyball or Bar Box.</br><i>AEBF TD will manage affected matches</i>
+3,20/11/2026,16:30:00,Nationals,Doubles,Open,Quarter-Finals,,Possible clash with Heyball or Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
+3,20/11/2026,18:00:00,Nationals,Doubles,Open,Semi Final,,Possible clash with Heyball or Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
 6,23/11/2026,11:00:00,Nationals,Singles,Women,Last 16,,
 9,26/11/2026,12:30:00,Nationals,Singles,Women,Quarter Final,,
 9,26/11/2026,17:30:00,Nationals,Singles,Women,Semi Final,,
@@ -211,16 +211,16 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 1,18/11/2026,9:30:00,Nationals,Teams,Open,Full Group Photo,,
 1,18/11/2026,10:00:00,Nationals,Teams,Open,Team Photos,,
 1,18/11/2026,12:15:00,Nationals,Teams,Open,Round 1,,
-1,18/11/2026,14:30:00,Nationals,Teams,Open,Round 2,,Possible clash to delay Heyball match.</br><i>Affected match  to start right after R1 to minimise delay. </i>
+1,18/11/2026,14:30:00,Nationals,Teams,Open,Round 2,,Possible clash to delay Heyball match.<br><small><i>Affected match  to start right after R1 to minimise delay. </i></small>
 1,18/11/2026,16:45:00,Nationals,Teams,Open,Round 3,,
-1,18/11/2026,19:00:00,Nationals,Teams,Open,Round 4,,Possible clash to delay Heyball match.</br><i>Affected match  to start right after R3 to minimise delay. </i>
-3,20/11/2026,16:30:00,Nationals,Doubles,Women,Quarter-Finals,,Possible clash with Heyball or Bar Box.</br><i>AEBF TD will manage affected matches</i>
-3,20/11/2026,18:00:00,Nationals,Doubles,Women,Semi Final,,Possible clash with Heyball or Bar Box.</br><i>AEBF TD will manage affected matches</i>
+1,18/11/2026,19:00:00,Nationals,Teams,Open,Round 4,,Possible clash to delay Heyball match.<br><small><i>Affected match  to start right after R3 to minimise delay. </i></small>
+3,20/11/2026,16:30:00,Nationals,Doubles,Women,Quarter-Finals,,Possible clash with Heyball or Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
+3,20/11/2026,18:00:00,Nationals,Doubles,Women,Semi Final,,Possible clash with Heyball or Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
 3,20/11/2026,19:30:00,Nationals,Plate,Women,Last 64,Fill remaining tables,
 4,21/11/2026,17:00:00,Nationals,Teams,Open,Round 8,,
 4,21/11/2026,19:15:00,Nationals,Teams,Open,Round 9,,
 4,21/11/2026,21:30:00,Nationals,Teams,Open,Round 10,,
-5,22/11/2026,9:00:00,Nationals,Teams,Open,Round 11,,Possible clash with Bar Box.</br><i>Affected match to be moved on same day.</i>
+5,22/11/2026,9:00:00,Nationals,Teams,Open,Round 11,,Possible clash with Bar Box.<br><small><i>Affected match to be moved on same day.</i></small>
 6,23/11/2026,13:00:00,Nationals,Teams,Open,Round 12,,
 6,23/11/2026,15:15:00,Nationals,Teams,Open,Round 13,,
 6,23/11/2026,17:30:00,Nationals,Teams,Open,Round 14,,
@@ -304,10 +304,10 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 1,18/11/2026,10:00:00,Nationals,Teams,Women,Team Photos,,
 1,18/11/2026,12:15:00,Nationals,Teams,Women,Round 1,,
 1,18/11/2026,14:30:00,Nationals,Teams,Women,Round 2,,
-1,18/11/2026,16:45:00,Nationals,Teams,Women,Round 3,,Possible clash to delay Heyball match.</br><i>Match  to start right after R2 to minimise delay. </i>
+1,18/11/2026,16:45:00,Nationals,Teams,Women,Round 3,,Possible clash to delay Heyball match.<br><small><i>Match  to start right after R2 to minimise delay. </i></small>
 3,20/11/2026,21:00:00,Nationals,Plate,Women,Last 64,Continued,
-3,20/11/2026,10:00:00,Nationals,Singles,Women,Last 64,,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
-3,20/11/2026,11:30:00,Nationals,Singles,Women,Last 32,,Possible clash with Heyball.</br><i>AEBF TD will manage affected matches</i>
+3,20/11/2026,10:00:00,Nationals,Singles,Women,Last 64,,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
+3,20/11/2026,11:30:00,Nationals,Singles,Women,Last 32,,Possible clash with Heyball.<br><small><i>AEBF TD will manage affected matches</i></small>
 4,21/11/2026,16:00:00,Nationals,Teams,Women,Round 7,,
 4,21/11/2026,18:15:00,Nationals,Teams,Women,Round 8,,
 4,21/11/2026,20:30:00,Nationals,Teams,Women,Round 9,,
@@ -325,30 +325,30 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 10,27/11/2026,16:00:00,Nationals,Teams,Women,Grand Final,,
 -1,16/11/2026,10:00:00,Oceania Heyball,Singles,Men,Australian Qualifiers,Details to follow,
 -1,16/11/2026,10:00:00,Oceania Heyball,Singles,Women,Australian Qualifiers,Details to follow,
-0,17/11/2026,9:00:00,Oceania Heyball,Singles,Men,Stage 1 - WB1 (64) - Session 1,,
-0,17/11/2026,11:15:00,Oceania Heyball,Singles,Women,Stage 1 - WB1 (64) - Session 1,,
-0,17/11/2026,13:30:00,Oceania Heyball,Singles,Men,Stage 1 - WB1 (64) - Session 2,,
-0,17/11/2026,15:45:00,Oceania Heyball,Singles,Women,Stage 1 - WB1 (64) - Session 2,,
-0,17/11/2026,18:00:00,Oceania Heyball,Singles,Men,Stage 1 - WB2 (32),,
-0,17/11/2026,20:30:00,Oceania Heyball,Singles,Women,Stage 1 - WB2 (32),Starts after Opening Ceremony,
-1,18/11/2026,10:00:00,Oceania Heyball,Singles,Men,Stage 1 - LB1 (L32) 49-64<sup>th</sup>,,Possible clash with AEBF.</br><i> Individual match switching with 12:30 Women if necessary</i>
-1,18/11/2026,12:30:00,Oceania Heyball,Singles,Women,Stage 1 - LB1 (L32) 49-64<sup>th</sup>,,Possible clash with AEBF.</br><i> Individual match switching with 10:00 Men if necessary</i>
-1,18/11/2026,15:00:00,Oceania Heyball,Singles,Men,Stage 1 - LB2 (L32) 33-48<sup>th</sup>,,Possible clash with AEBF.</br><i> Individual matches may start up to 45 minutes late.</i>
-1,18/11/2026,17:30:00,Oceania Heyball,Singles,Women,Stage 1 - LB2 (L32) 33-48<sup>th</sup>,,Possible clash with AEBF.</br><i> Individual matches may start up to 30 minutes late.</i>
-1,18/11/2026,20:00:00,Oceania Heyball,Singles,Men,Stage 1 - WB3 (16),,Possible clash with AEBF.</br><i> Individual matches may start up to 15 minutes late.</i>
-1,18/11/2026,20:00:00,Oceania Heyball,Singles,Women,Stage 1 - WB3 (16),,Possible clash with AEBF.</br><i> Individual matches may start up to 15 minutes late.</i>
-2,19/11/2026,10:00:00,Oceania Heyball,Singles,Men,Stage 1 - LB3 (L16) 25-32<sup>nd</sup>,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-2,19/11/2026,10:00:00,Oceania Heyball,Singles,Women,Stage 1 - LB3 (L16) 25-32<sup>nd</sup>,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-2,19/11/2026,12:30:00,Oceania Heyball,Singles,Men,Stage 1 - LB4 (L16) 17-24<sup>th</sup>,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-2,19/11/2026,12:30:00,Oceania Heyball,Singles,Women,Stage 1 - LB4 (L16) 17-24<sup>th</sup>,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-2,19/11/2026,15:00:00,Oceania Heyball,Singles,Men,Stage 2 - WB1 (16) 16-9<sup>th</sup>,Players from WB3 and LB4,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-2,19/11/2026,15:00:00,Oceania Heyball,Singles,Women,Stage 2 - WB1 (16) 16-9<sup>th</sup>,Players from WB3 and LB4,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-3,20/11/2026,10:00:00,Oceania Heyball,Singles,Men,Quarter Final,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-3,20/11/2026,10:00:00,Oceania Heyball,Singles,Women,Quarter Final,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-3,20/11/2026,12:30:00,Oceania Heyball,Singles,Men,Semi Final,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-3,20/11/2026,12:30:00,Oceania Heyball,Singles,Women,Semi Final,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-3,20/11/2026,15:00:00,Oceania Heyball,Singles,Men,Grand Final,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
-3,20/11/2026,17:30:00,Oceania Heyball,Singles,Women,Grand Final,,Possible clash with AEBF.</br><i> AEBF to manage clashes to avoid disruption to Heyball.</i>
+0,17/11/2026,9:00:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:green;"">WB1 (64)</span><small><small><i> (Session 1)</i></small></small>",,
+0,17/11/2026,11:15:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:green;"">WB1 (64)</span><small><small><i> (Session 1)</i></small></small>",,
+0,17/11/2026,13:30:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:green;"">WB1 (64)</span><small><small><i> (Session 2)</i></small></small>",,
+0,17/11/2026,15:45:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:green;"">WB1 (64)</span><small><small><i> (Session 2)</i></small></small>",,
+0,17/11/2026,18:00:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:green;"">WB2 (32)</span>",,
+0,17/11/2026,20:30:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:green;"">WB2 (32)</span>",Starts after Opening Ceremony,
+1,18/11/2026,10:00:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:red;"">LB1 (L32)</span><small><small><i> (49-64<sup>th</sup>)</i></small></small>",,Possible clash with AEBF.<br><Small><i> Individual match switching with 12:30 Women if necessary</i></small>
+1,18/11/2026,12:30:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:red;"">LB1 (L32)</span><small><small><i> (49-64<sup>th</sup>)</i></small></small>",,Possible clash with AEBF.<br><small><i> Individual match switching with 10:00 Men if necessary</i></small>
+1,18/11/2026,15:00:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:red;"">LB2 (L32)</span><small><small><i> (33-48<sup>th</sup>)</i></small></small>",,Possible clash with AEBF.<br><small><i> Individual matches may start up to 45 minutes late.</i></small>
+1,18/11/2026,17:30:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:red;"">LB2 (L32)</span><small><small><i> (33-48<sup>th</sup>)</i></small></small>",,Possible clash with AEBF.<br><small><i> Individual matches may start up to 30 minutes late.</i></small>
+1,18/11/2026,20:00:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:green;"">WB3 (16)</span>",Proceed to Stage 2,Possible clash with AEBF.<br><small><i> Individual matches may start up to 15 minutes late.</i></small>
+1,18/11/2026,20:00:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:green;"">WB3 (16)</span>",Proceed to Stage 2,Possible clash with AEBF.<br><small><i> Individual matches may start up to 15 minutes late.</i></small>
+2,19/11/2026,10:00:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:red;"">LB3 (L16)</span><small><small><i> (25-32<sup>nd</sup>)</i></small></small>",,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+2,19/11/2026,10:00:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:red;"">LB3 (L16)</span><small><small><i> (25-32<sup>nd</sup>)</i></small></small>",,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+2,19/11/2026,12:30:00,Oceania Heyball,Singles,Men,"Stage 1 - <span style=""color:red;"">LB4 (L16)</span><small><small><i> (17-24<sup>th</sup>)</i></small></small>",Proceed to Stage 2,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+2,19/11/2026,12:30:00,Oceania Heyball,Singles,Women,"Stage 1 - <span style=""color:red;"">LB4 (L16)</span><small><small><i> (17-24<sup>th</sup>)</i></small></small>",Proceed to Stage 2,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+2,19/11/2026,15:00:00,Oceania Heyball,Singles,Men,"Stage 2 - <span style=""color:green;"">WB1 (16)</span><small><small><i> (9-16<sup>th</sup>)</i></small></small>","Players from <span style=""color:green;"">WB3 (L16)</span> and <span style=""color:red;"">LB4 (L16)</span>.",Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+2,19/11/2026,15:00:00,Oceania Heyball,Singles,Women,"Stage 2 - <span style=""color:green;"">WB1 (16)</span><small><small><i> (9-16<sup>th</sup>)</i></small></small>","Players from <span style=""color:green;"">WB3 (L16)</span> and <span style=""color:red;"">LB4 (L16)</span>.",Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+3,20/11/2026,10:00:00,Oceania Heyball,Singles,Men,Quarter Final,,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+3,20/11/2026,10:00:00,Oceania Heyball,Singles,Women,Quarter Final,,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+3,20/11/2026,12:30:00,Oceania Heyball,Singles,Men,Semi Final,,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+3,20/11/2026,12:30:00,Oceania Heyball,Singles,Women,Semi Final,,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+3,20/11/2026,15:00:00,Oceania Heyball,Singles,Men,Grand Final,,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
+3,20/11/2026,17:30:00,Oceania Heyball,Singles,Women,Grand Final,,Possible clash with AEBF.<br><small><i> AEBF to manage clashes to avoid disruption to Heyball.</i></small>
 3,20/11/2026,19:30:00,Oceania Heyball,Singles,Men,Medal Ceremony,,
 3,20/11/2026,19:30:00,Oceania Heyball,Singles,Women,Medal Ceremony,,
 3,20/11/2026,20:00:00,Oceania Heyball,Singles,Men,Closing Ceremony,,
