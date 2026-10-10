@@ -1008,7 +1008,7 @@ function getHeyballSponsorsHtml() {
     let dataset = [];
 
 window.addEventListener('DOMContentLoaded', function() {
-    fetch('Matches_List.csv')
+    fetch('https://u335699.github.io/aebf/Matches_List.csv')
         .then(response => {
             if (!response.ok) throw new Error('File not found');
             return response.text();
