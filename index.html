@@ -63,6 +63,10 @@ cursor: pointer;
     opacity: 0;
 }
 
+.heyballSponsors {
+    display: none;
+}
+
 
 .table-container::before {
     content: "";
@@ -272,7 +276,21 @@ z-index: 1000;
     right: 10px;
 }
 
+.heyballSponsors {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 
+    position: absolute;
+    left: 45px;
+    top: 2px;
+}
+
+.heyballSponsors img {
+    width: auto !important;
+    height: 12px !important;
+    object-fit: contain;
+}
 
 header {
     position: sticky !important;
@@ -422,6 +440,10 @@ backdrop-filter: blur(4px);
 table tbody tr:not(:has([colspan])) td:nth-child(2) {
 display: none !important;
 }
+
+
+
+
 
 
     /* LINE 1 FLOW: Run Time, Competition, and Event side-by-side cleanly */
@@ -903,6 +925,10 @@ MITCHELL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Mitchell.
 CLS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/CLS-scaled.png',
 HEYBALL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/OPBA-Full-Colour-Logo-scaled.png',
 HEYBALL_WHITE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/OPBA-White-Colour-Logo-scaled.png',
+LIBER: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/LiberWin.png',
+DYNA: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/DYNA-SPHERES-LOGO.png',
+WPATV: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/WPA-TV-Logo.png',
+JOY: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/JOY-logo.png',
 WPA: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/WPA-logo-01-scaled.png',
 ULTIMATE_POOL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/Ultimate-Pool-Black-scaled.jpg',
 AUS_CUP: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-australia-cup-2026.png',
@@ -964,6 +990,17 @@ logo = LOGOS.PRIDE;
 return `<img src="${logo}" alt="" Width = "35" >`;
 }
 
+
+function getHeyballSponsorsHtml() {
+    return [
+        LOGOS.LIBER,
+        LOGOS.DYNA,
+        LOGOS.WPATV,
+        LOGOS.JOY
+    ]
+    .map(url => `<div class="logoCell"><img src="${url}" alt="Sponsor" /></div>`)
+    .join('');
+}
 
 
 
@@ -1470,7 +1507,12 @@ return iconPrefix + ' ' + formattedCommentHtml;
 
         const tr = document.createElement('tr');
         tr.innerHTML = '<td><code style="font-size:0.95rem;color:#0f172a;">' + row.Time.split(':').slice(0, 2).join(':') + '</code></td>' +
-                       '<td class="logoCell">' + getLogoHtml(row) + '</td>' +
+'<td class="logoCell">' +
+    getLogoHtml(row) +
+    (row.Competition === 'Oceania Heyball'
+        ? `<div class="heyballSponsors">${getHeyballSponsorsHtml()}</div>`
+        : '') +
+'</td>' +
 '<td>' + row.Competition + '</td>' +
                        '<td>' + (typeof getCategoryIconHtml === 'function' ? getCategoryIconHtml(row.Event) : row.Event) + '</td>' +
                        '<td>' + 
