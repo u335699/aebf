@@ -63,6 +63,187 @@ cursor: pointer;
     opacity: 0;
 }
 
+.filter-btn {
+    width: 100%;
+    height: 42px;
+    min-height: 42px;
+    margin-top: 0;
+    padding: 0 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 400;
+
+    box-sizing: border-box;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100%);
+    left: 0;
+    right: 0;
+
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,.12);
+
+    z-index: 2000;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+@keyframes pulseArrow {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+        color: #000;
+    }
+
+    50% {
+        transform: translateY(-50%) scale(1.5);
+        color: #2563eb;
+    }
+}
+
+#competitionButton.open::after,
+#eventButton.open::after,
+#divisionButton.open::after {
+    animation: pulseArrow 1s infinite;
+}
+
+#divisionMenu label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+}
+
+#divisionMenu .div-icon,
+#divisionButton .div-icon {
+    width: 12px;
+    height: 12px;
+    font-size: 0.4rem;
+    border-width: 1.5px;
+    margin-right: 0;
+}
+
+#divisionButton {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+#divisionButton::after {
+    content: "▾";
+
+    position: absolute;
+    right: 12px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #000000;
+    font-size: 1.6rem;
+
+    pointer-events: none;
+}
+
+#divisionButton.open::after {
+    content: "▴";
+}
+
+#divisionMenu label span,
+#competitionMenu label span,
+    #eventMenu label span {
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    letter-spacing: normal;
+    font-weight: 500;
+}
+
+#divisionMenu .div-icon {
+    margin-right: 0;
+}
+#competitionMenu label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+}
+
+#competitionButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+#competitionButton::after {
+    content: "▾";
+
+    position: absolute;
+    right: 12px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #000000;
+    font-size: 1.6rem;
+
+    pointer-events: none;
+}
+
+#competitionButton.open::after {
+    content: "▴";
+}
+#eventMenu label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    width: 100%;
+}
+
+#eventButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+#eventButton::after {
+    content: "▾";
+
+    position: absolute;
+    right: 12px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #000000;
+    font-size: 1.6rem;
+
+    pointer-events: none;
+}
+
+#eventButton.open::after {
+    content: "▴";
+}
 
 
 .day-header-row {
@@ -218,10 +399,7 @@ height: min(80vw, 1000px);
 .icon-green  { border: 3px solid #008000; background-color: #b7dfb7; color: #008000; }
 .icon-yellow { border: 3px solid #ffff00; background-color: #fffbcf; color: #999900; }
 
-.legend-mobile-btn,
-.legend-modal {
-display: none;
-}
+
 
 
 
@@ -238,23 +416,16 @@ object-fit: contain;
 }
 
 
-/* ==========================================================================
-   GLOBAL NOTIFICATION STYLING: SMALLER BOLDER CENTERED NOTE (ALL VIEWS)
-   ========================================================================== */
 .filter-schedule-note {
-    display: block !important;
-    width: 100% !important;
-    clear: both !important;
+
     margin-top: 4px !important;    /* Clear vertical spacing separation below elements */
-    
-    /* Typography Adjustments */
+    margin-bottom: -8px !important; 
     font-size: 0.76rem !important;  /* Compact legal footprint */
     font-weight: 700 !important;    /* Strong bold typography look */
     text-align: center !important;  /* Hardlocked centered layout alignment */
-    
     color: #475569 !important;      /* Deep slate gray for clean visibility contrast */
-    text-transform: none !important; /* FIXED: Keeps standard sentence case lettering */
-    letter-spacing: normal !important;
+   
+
 }
 
 
@@ -343,60 +514,11 @@ header {
 
 
 
-    .legend-mobile-btn {
-        display: block !important;
-        width: 100%;
-        margin-top: 12px;
-        padding: 10px;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        background: #ffffff;
-        color: #0f172a;
-		font-weight: 000;
-    }
 
-    .legend-desktop {
-        display: none !important;
-    }
 
-    .legend-modal {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.45);
-        z-index: 9999;
-    }
 
-    .legend-modal-content {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        max-height: 80vh;
-        overflow-y: auto;
-        background: white;
-        border-radius: 12px;
-        padding: 12px;
-    }
 
-    .legend-close {
-        width: 100%;
-        margin-top: 12px;
-        padding: 10px;
-        border: none;
-        border-radius: 8px;
-        background: #0f172a;
-        color: white;
-    }
 
-.legend-filter-item label {
-    visibility: hidden;
-}
-
-.legend-mobile-btn {
-    height: 42px;
-    margin-top: 0 !important;
-}
 
     /* 1. CLEAN HIDE FOR DESKTOP & REPEATED HEADERS (Goodbye empty lozenges!) */
     table thead,
@@ -673,13 +795,11 @@ margin-bottom: 20px;
     }
 
     header,
-    .filter-card,
-    .filter-help-text,
-    .legend-mobile-btn,
-    .legend-desktop,
-    .legend-modal {
-        display: none !important;
-    }
+    .filter-card {
+    display: none !important;
+}
+
+
 
     /* restore normal table */
     table {
@@ -809,31 +929,60 @@ class="right-logo">
 
 
             <div class="filter-item">
-                <label for="selComp">Competition</label>
-                <select id="selComp" disabled>
-                    <option value="">-- All Competitions --</option>
-                </select>
+                <label>Competition</label>
+            
+                <button
+                    id="competitionButton"
+                    class="filter-btn"
+                    type="button"
+                    disabled>
+                    All Competitions
+                </button>
+            
+                <div
+                    id="competitionMenu"
+                    class="dropdown-menu">
+                </div>
             </div>
+            
             <div class="filter-item">
-                <label for="selEvent">Event</label>
-                <select id="selEvent" disabled>
-                    <option value="">-- All Categories --</option>
-                </select>
+                <label>Event</label>
+            
+                <button
+                    id="eventButton"
+                    class="filter-btn"
+                    type="button"
+                    disabled>
+                    All Categories
+                </button>
+            
+                <div
+                    id="eventMenu"
+                    class="dropdown-menu">
+                </div>
             </div>
+
             <div class="filter-item">
-                <label for="selDivision">Division</label>
-                <select id="selDivision" disabled>
-                    <option value="">-- All Divisions --</option>
-                </select>
+                <label>Division</label>
+                <button
+                    id="divisionButton"
+                    class="filter-btn"
+                    type="button"
+                    disabled>
+                    All Divisions
+                </button>
+                <div
+                    id="divisionMenu"
+                    class="dropdown-menu">
+                </div>
             </div>
 			
-<div class="filter-item legend-filter-item">
-    <label>&nbsp;</label>
-    <button id="legendButton"
-            class="legend-mobile-btn"
-            type="button">
-        Legend
-    </button>
+            <div class="filter-item reset-filter-item">
+                <label>&nbsp;</label>
+                <button id="resetButton"
+class="filter-btn"type="button">
+                Reset
+                </button>
 </div>			
 			
 
@@ -841,56 +990,12 @@ class="right-logo">
 
 
 
-<!-- Replace your current legend block with this 4-column fluid layout -->
-<div id="divisionLegend"
-     class="legend-desktop"
-     style="background: #ffffff; padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-top: 20px; margin-bottom: 24px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 16px;">
-    
 
-    
-    <!-- Responsive CSS Flex Grid Layout -->
-    <div style="display: flex; flex-wrap: wrap; gap: 16px 12px; max-width: 900px; width: 100%; margin: 0 auto; justify-content: center;">
-        
-        <!-- Every legend track wrapper below is configured to lock at a maximum of 4 columns (25% width share) -->
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-blue" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">M</span> Men
-        </div>
-        
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-blue" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">O</span> Open
-        </div>
-        
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-blue" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">U23</span> Under 23
-        </div>
-        
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-pink" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">W</span> Women
-        </div>
-        
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-pink" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">50+</span> Over 50 W
-        </div>
-        
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-green" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">M</span> Masters
-        </div>
-        
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-green" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">60+</span> Over 60
-        </div>
-        
-        <div style="flex: 1 0 calc(25% - 12px); min-width: 140px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 0.85rem; color: #334155;">
-            <span class="div-icon icon-yellow" style="width:24px; height:24px; font-size:0.7rem; margin-right:8px; flex-shrink:0;">CUP</span> Australia Cup
-        </div>
 
-    </div>
-</div>
 
    	    <div class="filter-schedule-note">
         * Schedule is subject to change
     </div>	
-
 </div>
 
     <div class="table-container">
@@ -911,19 +1016,7 @@ class="right-logo">
         <div id="emptyView" class="no-records">No records found.</div>
     </div>
 </div>
-<div id="legendModal" class="legend-modal">
- 
-<div class="legend-modal-content">
- 
-<div id="legendContent"></div>
- 
-<button id="closeLegend"
-class="legend-close"
-type="button">
-Close
-</button>
- 
-</div>
+
  
 </div>
 
@@ -957,7 +1050,13 @@ PRIDE_WORDS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/PIS_RG
 CUEBALL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2024/09/cueball-white.png',
 NATIONALS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-senior-championships-2026.png',
 POOLSTAT: 'https://info.poolstat.net.au/wp-content/uploads/2020/03/poolstat-header-logo.jpg',
-POOLSTAT_WHITE: 'https://info.poolstat.net.au/wp-content/uploads/2020/03/poolstat-dash-logo.png'
+POOLSTAT_WHITE: 'https://info.poolstat.net.au/wp-content/uploads/2020/03/poolstat-dash-logo.png',
+SIX_RED: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/6_red_cropped.png',
+PLATE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Plate_cropped-1.png',
+DOUBLES: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/doubles.png',
+TEAMS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/teans.png',
+SINGLES: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/singles.png',
+SHOOTOUT: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/shootout.png',
 };
 
 const LEFT_HEADER_LOGOS = [
@@ -1007,6 +1106,68 @@ logo = LOGOS.PRIDE;
 return `<img src="${logo}" alt="" Width = "35" >`;
 }
 
+function getCompetitionLogoHtml(compName) {
+
+let logo = '';
+
+if (compName === 'Big Guns') {
+    logo = LOGOS.BIG_GUNS;
+}
+else if (compName === 'Oceania Heyball') {
+    logo = LOGOS.HEYBALL;
+}
+else if (compName === 'Bar Box') {
+    logo = LOGOS.ULTIMATE_POOL;
+}
+else if (compName.includes('Nationals')) {
+    logo = LOGOS.NATIONALS;
+}
+else if (compName.includes('Indigenous')) {
+    logo = LOGOS.INDIGENOUS;
+}
+else if (compName === 'T140 Challenge') {
+    logo = LOGOS.T140;
+}
+
+if (!logo) {
+    return '';
+}
+
+return `<img src="${logo}" alt="" Width = "14" >`;
+}
+
+
+
+function getEventLogoHtml(eventName) {
+
+let logo = '';
+
+if (eventName === 'Singles') {
+    logo = LOGOS.SINGLES;
+}
+else if (eventName === 'Teams') {
+    logo = LOGOS.TEAMS;
+}
+else if (eventName === 'Doubles') {
+    logo = LOGOS.DOUBLES;
+}
+else if (eventName === 'Shootout') {
+    logo = LOGOS.SHOOTOUT;
+}
+else if (eventName === 'Plate') {
+    logo = LOGOS.PLATE;
+}
+else if (eventName === '6 Red') {
+    logo = LOGOS.SIX_RED;
+}
+
+if (!logo) {
+    return '';
+}
+
+return `<img src="${logo}" alt="" Width = "14" >`;
+}
+
 
 function getHeyballSponsorsHtml() {
     return [
@@ -1019,10 +1180,176 @@ function getHeyballSponsorsHtml() {
     .join('');
 }
 
+let selectedCompetitions = [];
+let selectedEvents = [];
+let selectedDivisions = [];
+function buildDivisionMenu(sortedItems) {
 
+const menu =
+    document.getElementById('divisionMenu');
 
+menu.innerHTML = '';
 
+sortedItems.forEach(div => {
+
+    const row =
+        document.createElement('label');
+
+        row.innerHTML =
+    `<input
+        type="checkbox"
+    value="${div}"
+        ${selectedDivisions.includes(div) ? 'checked' : ''}>
+
+     ${getDivisionIconHtml(div)}
+
+     <span>${div}</span>`;
+
+    menu.appendChild(row);
+
+    const checkbox = row.querySelector('input');
+
+    checkbox.addEventListener('change', () => {
+
+selectedDivisions =
+    Array.from(
+        menu.querySelectorAll('input:checked')
+    ).map(cb => cb.value);
+
+    const button =
+    document.getElementById('divisionButton');
+
+if (selectedDivisions.length === 0) {
+
+    button.textContent =
+        'All Divisions';
+
+} else {
+
+    button.innerHTML =
+        selectedDivisions
+            .map(div => getDivisionIconHtml(div))
+            .join('');
+}
+
+handleInterfaceUpdate();
+});
+
+});
+}
+function buildCompetitionMenu(sortedItems) {
+
+const menu =
+    document.getElementById('competitionMenu');
+
+menu.innerHTML = '';
+
+sortedItems.forEach(comp => {
+
+    const row =
+        document.createElement('label');
+
+    row.innerHTML =
+    `<input
+        type="checkbox"
+        value="${comp}"
+        ${selectedCompetitions.includes(comp) ? 'checked' : ''}>
+
+     ${getCompetitionLogoHtml(comp)}
+
+     <span>${comp}</span>`;
+
+    menu.appendChild(row);
+
+    const checkbox =
+        row.querySelector('input');
+
+    checkbox.addEventListener('change', () => {
+
+        selectedCompetitions =
+            Array.from(
+                menu.querySelectorAll('input:checked')
+            ).map(cb => cb.value);
+
+        const button =
+            document.getElementById('competitionButton');
+
+        if (selectedCompetitions.length === 0) {
+
+            button.textContent =
+                'All Competitions';
+
+        } else {
+
+            button.innerHTML =
+                selectedCompetitions
+                    .map(comp => getCompetitionLogoHtml(comp))
+                    .join('');
+        }
+
+        handleInterfaceUpdate();
+    });
+
+});
+
+}
+ 
     let dataset = [];
+    function buildEventMenu(sortedItems) {
+
+const menu =
+    document.getElementById('eventMenu');
+
+menu.innerHTML = '';
+
+sortedItems.forEach(event => {
+
+    const row =
+        document.createElement('label');
+
+    row.innerHTML =
+    `<input
+        type="checkbox"
+        value="${event}"
+        ${selectedEvents.includes(event) ? 'checked' : ''}>
+
+${getEventLogoHtml(event)}
+
+<span>${event}</span>`;
+
+    menu.appendChild(row);
+
+    const checkbox =
+        row.querySelector('input');
+
+    checkbox.addEventListener('change', () => {
+
+        selectedEvents =
+            Array.from(
+                menu.querySelectorAll('input:checked')
+            ).map(cb => cb.value);
+
+            const button =
+    document.getElementById('eventButton');
+
+if (selectedEvents.length === 0) {
+
+    button.textContent =
+        'All Categories';
+
+} else {
+
+button.innerHTML =
+    selectedEvents
+        .map(event => getEventLogoHtml(event))
+        .join('');
+}
+        handleInterfaceUpdate();
+    });
+
+});
+
+}
 
 window.addEventListener('DOMContentLoaded', function() {
     fetch('https://u335699.github.io/aebf/Matches_List.csv')
@@ -1032,8 +1359,8 @@ window.addEventListener('DOMContentLoaded', function() {
         })
         .then(text => parseCSVText(text))
         .catch(error => {
-            document.getElementById('counter').textContent = 'Error loading CSV file.';
-        });
+    console.error(error);
+});
 });
 
 
@@ -1221,10 +1548,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function enableInterface() {
 
-
-        document.getElementById('selComp').disabled = false;
-        document.getElementById('selEvent').disabled = false;
-        document.getElementById('selDivision').disabled = false;
+        document.getElementById('competitionButton').disabled = false;
+document.getElementById('eventButton').disabled = false;
+document.getElementById('divisionButton').disabled = false;
 
 
         populateDropdowns();
@@ -1233,9 +1559,9 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateDropdowns() {
-        const currentComp = document.getElementById('selComp').value;
-        const currentEvent = document.getElementById('selEvent').value;
-        const currentDiv = document.getElementById('selDivision').value;
+        const currentComp = selectedCompetitions;
+        const currentEvent = selectedEvents;
+        const currentDiv = '';
 
 
 
@@ -1247,45 +1573,160 @@ window.addEventListener('DOMContentLoaded', function() {
 
                dataset.forEach(row => {
 
+                const matchesCurrentDiv =
+    selectedDivisions.length === 0 ||
+    row.Divisions.some(div =>
+        selectedDivisions.includes(div)
+    );
 
-            // Define a clean rule to check if the current row contains the selected division
-            const matchesCurrentDiv = !currentDiv || (row.Divisions && row.Divisions.includes(currentDiv));
 
-
-
-            if (
-                (!currentEvent || row.Event === currentEvent) &&
-                matchesCurrentDiv ) {
+                if (
+    (
+        currentEvent.length === 0 ||
+        currentEvent.includes(row.Event)
+    ) &&
+    matchesCurrentDiv ) {
                 if (row.Competition) comps.add(row.Competition);
             }
 
             if (
-                (!currentComp || row.Competition === currentComp) &&
-                matchesCurrentDiv ) {
-                if (row.Event) events.add(row.Event);
-            }
-
-
-            if (
-                (!currentComp || row.Competition === currentComp) &&
-                (!currentEvent || row.Event === currentEvent) ) {
-                if (Array.isArray(row.Divisions)) {
-    row.Divisions.forEach(d => { if (d) divisions.add(d); });
-} else if (row.Division) {
-    divisions.add(row.Division);
+    (
+        currentComp.length === 0 ||
+        currentComp.includes(row.Competition)
+    ) &&
+    matchesCurrentDiv
+) {
+    if (row.Event) events.add(row.Event);
 }
 
-            }
 
+if (
+    (
+        currentComp.length === 0 ||
+        currentComp.includes(row.Competition)
+    ) &&
+    (
+    currentEvent.length === 0 ||
+    currentEvent.includes(row.Event)
+)
+) {
 
+    if (Array.isArray(row.Divisions)) {
+
+        row.Divisions.forEach(d => {
+            if (d) divisions.add(d);
         });
 
+    } else if (row.Division) {
 
-        resetSelect('selComp', '-- All Competitions --', Array.from(comps).sort(), currentComp);
-        resetSelect('selEvent', '-- All Categories --', Array.from(events).sort(), currentEvent);
-        resetSelect('selDivision', '-- All Divisions --', Array.from(divisions).sort(), currentDiv);
+        divisions.add(row.Division);
 
     }
+}
+});
+
+
+        buildCompetitionMenu(
+    Array.from(comps).sort()
+);
+const eventOrder = {
+    'Singles': 1,
+    'Doubles': 2,
+    'Teams': 3,
+    'Plate': 4,
+    'Shootout': 5,
+    '6 Red': 6
+};
+
+buildEventMenu(
+    Array.from(events).sort((a, b) => {
+        return (
+            (eventOrder[a] || 999) -
+            (eventOrder[b] || 999)
+        );
+    })
+);
+        buildDivisionMenu(
+    Array.from(divisions)
+        .sort((a, b) => getDivisionOrderRank(a) - getDivisionOrderRank(b))
+);
+    }
+
+
+    function closeAllMenus() {
+
+document
+    .querySelectorAll('.dropdown-menu')
+    .forEach(menu => menu.classList.remove('open'));
+
+document
+    .querySelectorAll('#competitionButton, #eventButton, #divisionButton')
+    .forEach(button => button.classList.remove('open'));
+}
+
+
+
+document
+    .getElementById('divisionButton')
+    .addEventListener('click', () => {
+
+        const menu =
+            document.getElementById('divisionMenu');
+
+        const wasOpen =
+            menu.classList.contains('open');
+
+        closeAllMenus();
+
+        if (!wasOpen) {
+            menu.classList.add('open');
+            document
+                .getElementById('divisionButton')
+                .classList.add('open');
+        }
+    });
+    document
+    .getElementById('competitionButton')
+    .addEventListener('click', () => {
+
+        const menu =
+            document.getElementById('competitionMenu');
+
+        const wasOpen =
+            menu.classList.contains('open');
+
+        closeAllMenus();
+
+        if (!wasOpen) {
+            menu.classList.add('open');
+            document
+                .getElementById('competitionButton')
+                .classList.add('open');
+        }
+    });
+    
+    
+            document
+    .getElementById('eventButton')
+    .addEventListener('click', () => {
+
+        const menu =
+            document.getElementById('eventMenu');
+
+        const wasOpen =
+            menu.classList.contains('open');
+
+        closeAllMenus();
+
+        if (!wasOpen) {
+            menu.classList.add('open');
+            document
+                .getElementById('eventButton')
+                .classList.add('open');
+        }
+    });
+
+
 
     function resetSelect(elementId, defaultText, sortedItems, currentValue) {
         const dropdown = document.getElementById(elementId);
@@ -1300,12 +1741,8 @@ window.addEventListener('DOMContentLoaded', function() {
             dropdown.appendChild(el);
         });
     }
-
- function renderTable(records) {
-    const tbody = document.getElementById('scheduleRows');
-    const emptyView = document.getElementById('emptyView');
-    const counter = document.getElementById('counter');
-
+    
+    
     function getDivisionOrderRank(divName) {
         if (!divName) return 99;
         let clean = divName.trim().toLowerCase();
@@ -1321,49 +1758,20 @@ window.addEventListener('DOMContentLoaded', function() {
         
         return 90;
     }
+
+
+ function renderTable(records) {
+    const tbody = document.getElementById('scheduleRows');
+    const emptyView = document.getElementById('emptyView');
+    const counter = document.getElementById('counter');
+
+
     
 	function renderMessage(sourceText, iconPrefix, row, activeDivFilter) {
 	                                   const individualCommentTracks = sourceText.split(" / ");
                                    
-                                   // CASE A: A specific division filter is active (e.g., "Men", "Women", "60+")
-                                   if (activeDivFilter && activeDivFilter.trim() !== "") {
-                                       let cleanFilter = activeDivFilter.trim().toLowerCase();
-                                       let matchedCommentText = "";
 
-                                       // Scan the comment parts to extract ONLY the message that matches this filter
-                                       individualCommentTracks.forEach(track => {
-                                           if (track.includes("[")) {
-                                               // Extract the bracket text token tag inside the string label
-                                               let bracketText = track.substring(track.indexOf("[") + 1, track.indexOf("]")).trim().toLowerCase();
-                                               let plainMessageContent = track.substring(track.indexOf("]") + 1).trim();
-
-                                               // Match the abbreviation variants against your active dropdown selection rule
-                                               let matchesCurrentSelection = false;
-                                               if (cleanFilter === 'open' && bracketText === 'o') matchesCurrentSelection = true;
-                                               else if ((cleanFilter === 'men' || cleanFilter === 'mens') && bracketText === 'm') matchesCurrentSelection = true;
-                                               else if ((cleanFilter === 'women' || cleanFilter === 'womens') && bracketText === 'w') matchesCurrentSelection = true;
-                                               else if (cleanFilter.includes('50') && bracketText.includes('50')) matchesCurrentSelection = true;
-                                               else if (cleanFilter.includes('60') && bracketText.includes('60')) matchesCurrentSelection = true;
-                                               else if (cleanFilter.includes('23') && bracketText.includes('23')) matchesCurrentSelection = true;
-                                               else if (cleanFilter.includes('master') && bracketText === 'mas') matchesCurrentSelection = true;
-                                               else if (cleanFilter.includes('cup') && bracketText === 'cup') matchesCurrentSelection = true;
-
-                                               if (matchesCurrentSelection) {
-                                                   matchedCommentText = plainMessageContent;
-                                               }
-                                           }
-                                       });
-
-                                       // If a direct division match was found, print the text ONLY (with zero icons)
-if (matchedCommentText !== "") {
-    return iconPrefix + ' ' + matchedCommentText;
-}
-
-if (!sourceText.includes("[")) {
-    return iconPrefix + ' ' + sourceText;
-}
-                                       return ""; // Hide other comments completely
-                                   }
+                                
 
                                    // CASE B: NO FILTER SELECTED (Global Unfiltered Grid Card Presentation)
                                                                       // CASE B: NO FILTER SELECTED (Global Unfiltered Grid Card Presentation)
@@ -1373,7 +1781,38 @@ if (!sourceText.includes("[")) {
                                    const commentMap = {}; // Tracks: text_message -> array of brackets [M, O, W]
                                    
                                    individualCommentTracks.forEach(track => {
-                                       if (track.includes("[")) {
+
+if (activeDivFilter.length > 0 && track.includes("[")) {
+
+    const bracketText =
+        track.substring(
+            track.indexOf("[") + 1,
+            track.indexOf("]")
+        ).trim().toLowerCase();
+
+    const matchesCurrentSelection =
+        activeDivFilter.some(div => {
+
+            const cleanFilter = div.toLowerCase();
+
+            if (cleanFilter === 'open' && bracketText === 'o') return true;
+            if ((cleanFilter === 'men' || cleanFilter === 'mens') && bracketText === 'm') return true;
+            if ((cleanFilter === 'women' || cleanFilter === 'womens') && bracketText === 'w') return true;
+            if (cleanFilter.includes('50') && bracketText.includes('50')) return true;
+            if (cleanFilter.includes('60') && bracketText.includes('60')) return true;
+            if (cleanFilter.includes('23') && bracketText.includes('23')) return true;
+            if (cleanFilter.includes('master') && bracketText === 'mas') return true;
+            if (cleanFilter.includes('cup') && bracketText === 'cup') return true;
+
+            return false;
+        });
+
+    if (!matchesCurrentSelection) {
+        return;
+    }
+}
+
+if (track.includes("[")) {
                                            let label = track.substring(track.indexOf("[") + 1, track.indexOf("]")).trim();
                                            let message = track.substring(track.indexOf("]") + 1).trim();
                                            
@@ -1415,8 +1854,15 @@ if (!sourceText.includes("[")) {
                                        });
 
                                        // Suffix the text message directly next to its gathered icon stack
-									   
-if (sortedCommentDivs.length === row.Divisions.length) {
+				   
+const visibleDivisionCount =
+    activeDivFilter.length > 0
+        ? row.Divisions.filter(div =>
+              activeDivFilter.includes(div)
+          ).length
+        : row.Divisions.length;
+
+if (sortedCommentDivs.length === visibleDivisionCount) {
     formattedSegments.push(messageText);
 } else {
     formattedSegments.push(messageText + " (" + iconsGroupHtml + "only)");
@@ -1505,14 +1951,17 @@ return iconPrefix + ' ' + formattedCommentHtml;
                        '<td>' + (typeof getCategoryIconHtml === 'function' ? getCategoryIconHtml(row.Event) : row.Event) + '</td>' +
                        '<td>' + 
                            (() => {
-                               const activeDivFilter = document.getElementById('selDivision').value;
+                            const activeDivFilter = selectedDivisions;
                                let multiIconsHtml = '<div style="display: inline-flex; gap: 4px; flex-wrap: nowrap;">';
                                if (Array.isArray(row.Divisions)) {
                                    // Sorts your circle icon tracking rows based on your hard-coded rankings list
                                    const sortedDivs = [...row.Divisions].sort((a, b) => getDivisionOrderRank(a) - getDivisionOrderRank(b));
                                    sortedDivs.forEach(div => {
 
-                                       if (activeDivFilter && div !== activeDivFilter) return;
+                                    if (
+    activeDivFilter.length > 0 &&
+    !activeDivFilter.includes(div)
+) return;
                                        if (typeof getDivisionIconHtml === 'function') {
                                            multiIconsHtml += getDivisionIconHtml(div);
                                        }
@@ -1531,7 +1980,7 @@ return iconPrefix + ' ' + formattedCommentHtml;
 (() => {
 
     const activeDivFilter =
-        document.getElementById('selDivision').value;
+    selectedDivisions;
 
     let output = '';
 
@@ -1588,18 +2037,24 @@ return iconPrefix + ' ' + formattedCommentHtml;
     function executeFilter() {
 
 
-        const compFilter = document.getElementById('selComp').value;
-        const eventFilter = document.getElementById('selEvent').value;
-        const divisionFilter = document.getElementById('selDivision').value;
+        const compFilter = selectedCompetitions;
+        const eventFilter = selectedEvents;
+        const divisionFilter = selectedDivisions;
 
 
         const filtered = dataset.filter(row => {
 
-            const matchesComp = !compFilter || row.Competition === compFilter;
-            const matchesEvent = !eventFilter || row.Event === eventFilter;
-            const matchesDiv = !divisionFilter || (row.Divisions ? row.Divisions.includes(divisionFilter) : row.Division === divisionFilter);
-
-            
+            const matchesComp =
+    compFilter.length === 0 ||
+    compFilter.includes(row.Competition);
+    const matchesEvent =
+    eventFilter.length === 0 ||
+    eventFilter.includes(row.Event);
+            const matchesDiv =
+    divisionFilter.length === 0 ||
+    row.Divisions.some(div =>
+        divisionFilter.includes(div)
+    );
 
 
             return  matchesComp && matchesEvent && matchesDiv;
@@ -1616,9 +2071,9 @@ return iconPrefix + ' ' + formattedCommentHtml;
     function setupListeners() {
 
 
-        document.getElementById('selComp').onchange = handleInterfaceUpdate;
-        document.getElementById('selEvent').onchange = handleInterfaceUpdate;
-        document.getElementById('selDivision').onchange = handleInterfaceUpdate;
+
+
+ 
 
     }
 
@@ -1666,30 +2121,26 @@ function getDivisionIconHtml(divisionText) {
     return '';
 }
 
-document.getElementById('legendButton')?.addEventListener('click', () => {
+document.getElementById('resetButton')
+    .addEventListener('click', () => {
 
-    document.getElementById('legendContent').innerHTML =
-        document.getElementById('divisionLegend').innerHTML;
+        selectedCompetitions = [];
+        
+        document.getElementById('competitionButton')
+        .textContent = 'All Competitions';
+        
+        selectedEvents = [];
 
-    document.getElementById('legendModal').style.display = 'block';
+document.getElementById('eventButton')
+    .textContent = 'All Categories';
+        
+        selectedDivisions = [];
 
-});
+document.getElementById('divisionButton')
+    .textContent = 'All Divisions';
 
-document.getElementById('closeLegend')?.addEventListener('click', () => {
-
-    document.getElementById('legendModal').style.display = 'none';
-
-});
-
-document.getElementById('legendModal')?.addEventListener('click', (e) => {
-
-    if (e.target.id === 'legendModal') {
-
-        document.getElementById('legendModal').style.display = 'none';
-
-    }
-
-});
+handleInterfaceUpdate();
+    });
 
 
 document.querySelector('.event-logo').addEventListener('click', () => {
@@ -1723,7 +2174,7 @@ document.getElementById('headerMask').style.display = 'block';
     }
 
 });
-``
+
 
 
 window.addEventListener('beforeprint', () => {
@@ -1755,22 +2206,19 @@ const printedOnTime =
 `${time}`;
 
 const competition =
-document.getElementById('selComp')
-.selectedOptions[0].text
-.replaceAll('-', ' ')
-.replace('All Competitions', 'All');
+selectedCompetitions.length
+    ? selectedCompetitions.join(', ')
+    : 'All';
  
-const event =
-document.getElementById('selEvent')
-.selectedOptions[0].text
-.replaceAll('-', ' ')
-.replace('All Categories', 'All');
+    const event =
+selectedEvents.length
+    ? selectedEvents.join(', ')
+    : 'All';
  
 const division =
-document.getElementById('selDivision')
-.selectedOptions[0].text
-.replaceAll('-', ' ')
-.replace('All Divisions', 'All');
+selectedDivisions.length
+    ? selectedDivisions.join(', ')
+    : 'All';
  
 document.getElementById('printFooter').innerHTML =
 `Cuesports Carnival Down Under &emsp;•&emsp;Gold Coast 2026 &emsp;•&emsp;Competition: <b>${competition}</b> &emsp;•&emsp;Event: <b>${event}</b> &emsp;•&emsp;Division: <b>${division}</b> &emsp;•&emsp;Printed on <b>${printedOnDate}</b> at <b>${printedOnTime}</b>. `;
