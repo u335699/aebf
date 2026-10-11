@@ -806,17 +806,8 @@ class="right-logo">
     <div class="filter-card">
         <div class="filter-grid">
 
-           <div class="filter-item" style="display: none;">
-                <label for="txtSearch">Keyword Search</label>
-                <input type="text" id="txtSearch" placeholder="Search event details..." disabled>
-            </div>
 
-            <div class="filter-item" style="display: none;">
-                <label for="selDay">Day</label>
-                <select id="selDay" disabled>
-                    <option value="">-- All Days --</option>
-                </select>
-            </div>
+
             <div class="filter-item">
                 <label for="selComp">Competition</label>
                 <select id="selComp" disabled>
@@ -845,12 +836,7 @@ class="right-logo">
     </button>
 </div>			
 			
-            <div class="filter-item" style="display: none;">
-                <label for="selRound">Round</label>
-                <select id="selRound" disabled>
-                    <option value="">-- All Rounds --</option>
-                </select>
-            </div>
+
         </div>
 
 
@@ -1234,12 +1220,12 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     function enableInterface() {
-        document.getElementById('txtSearch').disabled = false;
-        document.getElementById('selDay').disabled = false;
+
+
         document.getElementById('selComp').disabled = false;
         document.getElementById('selEvent').disabled = false;
         document.getElementById('selDivision').disabled = false;
-        document.getElementById('selRound').disabled = false;
+
 
         populateDropdowns();
         renderTable(dataset);
@@ -1247,59 +1233,42 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateDropdowns() {
-        const currentDay = document.getElementById('selDay').value;
         const currentComp = document.getElementById('selComp').value;
         const currentEvent = document.getElementById('selEvent').value;
         const currentDiv = document.getElementById('selDivision').value;
-        const currentRound = document.getElementById('selRound').value;
-        const query = document.getElementById('txtSearch').value.toLowerCase();
 
-        const days = new Set();
+
+
+
         const comps = new Set();
         const events = new Set();
         const divisions = new Set();
-        const rounds = new Set();
+
 
                dataset.forEach(row => {
-            const matchesSearch = !query || 
-                row.Event.toLowerCase().includes(query) || 
-                row.Round.toLowerCase().includes(query) ||
-                row.Competition.toLowerCase().includes(query) ||
-                (row.Comment && row.Comment.toLowerCase().includes(query));
 
-            if (!matchesSearch) return;
 
             // Define a clean rule to check if the current row contains the selected division
             const matchesCurrentDiv = !currentDiv || (row.Divisions && row.Divisions.includes(currentDiv));
 
-            if ((!currentComp || row.Competition === currentComp) &&
-                (!currentEvent || row.Event === currentEvent) &&
-                matchesCurrentDiv &&
-                (!currentRound || row.Round === currentRound)) {
-                if (row.Day && row.Date) {
-                    days.add("Day " + row.Day + "  -  " + row.Date);
-                }
-            }
 
-            if ((!currentDay || row.Day === currentDay) &&
+
+            if (
                 (!currentEvent || row.Event === currentEvent) &&
-                matchesCurrentDiv &&
-                (!currentRound || row.Round === currentRound)) {
+                matchesCurrentDiv ) {
                 if (row.Competition) comps.add(row.Competition);
             }
 
-            if ((!currentDay || row.Day === currentDay) &&
+            if (
                 (!currentComp || row.Competition === currentComp) &&
-                matchesCurrentDiv &&
-                (!currentRound || row.Round === currentRound)) {
+                matchesCurrentDiv ) {
                 if (row.Event) events.add(row.Event);
             }
 
 
-            if ((!currentDay || row.Day === currentDay) &&
+            if (
                 (!currentComp || row.Competition === currentComp) &&
-                (!currentEvent || row.Event === currentEvent) &&
-                (!currentRound || row.Round === currentRound)) {
+                (!currentEvent || row.Event === currentEvent) ) {
                 if (Array.isArray(row.Divisions)) {
     row.Divisions.forEach(d => { if (d) divisions.add(d); });
 } else if (row.Division) {
@@ -1308,19 +1277,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
             }
 
-            if ((!currentDay || row.Day === currentDay) &&
-                (!currentComp || row.Competition === currentComp) &&
-                (!currentEvent || row.Event === currentEvent) &&
-                (!currentDiv || row.Division === currentDiv)) {
-                if (row.Round) rounds.add(row.Round);
-            }
+
         });
 
-        resetSelect('selDay', '-- All Days --', Array.from(days).sort(), currentDay);
+
         resetSelect('selComp', '-- All Competitions --', Array.from(comps).sort(), currentComp);
         resetSelect('selEvent', '-- All Categories --', Array.from(events).sort(), currentEvent);
         resetSelect('selDivision', '-- All Divisions --', Array.from(divisions).sort(), currentDiv);
-        resetSelect('selRound', '-- All Rounds --', Array.from(rounds).sort(), currentRound);
+
     }
 
     function resetSelect(elementId, defaultText, sortedItems, currentValue) {
@@ -1449,14 +1413,7 @@ if (!sourceText.includes("[")) {
 
                                            iconsGroupHtml += '<span class="div-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px; border-radius: 50%; font-weight: bold; font-size: 0.6rem; text-transform: uppercase; margin: 0 4px 0 0; vertical-align: middle; position: relative; top: -2px;   ' + badgeColorStyle + '">' + rawDivCode + '</span>';
                                        });
-const cardDivs =
-    [...row.Divisions]
-    .sort((a, b) => getDivisionOrderRank(a) - getDivisionOrderRank(b))
-    .join('|');
 
-const commentDivs =
-    [...sortedCommentDivs]
-    .join('|');
                                        // Suffix the text message directly next to its gathered icon stack
 									   
 if (sortedCommentDivs.length === row.Divisions.length) {
@@ -1578,14 +1535,7 @@ return iconPrefix + ' ' + formattedCommentHtml;
 
     let output = '';
 
-console.log(
-    row.Time,
-    row.Competition,
-    {
-        Comment: row.Comment,
-        Warning: row.Warning
-    }
-);
+
 
 
     if (row.Comment && row.Comment.trim() !== '') {
@@ -1636,28 +1586,23 @@ console.log(
 
 
     function executeFilter() {
-        const query = document.getElementById('txtSearch').value.toLowerCase();
-        const dayFilter = document.getElementById('selDay').value;
+
+
         const compFilter = document.getElementById('selComp').value;
         const eventFilter = document.getElementById('selEvent').value;
         const divisionFilter = document.getElementById('selDivision').value;
-        const roundFilter = document.getElementById('selRound').value;
+
 
         const filtered = dataset.filter(row => {
-            const matchesDay = !dayFilter || row.Day === dayFilter;
+
             const matchesComp = !compFilter || row.Competition === compFilter;
             const matchesEvent = !eventFilter || row.Event === eventFilter;
             const matchesDiv = !divisionFilter || (row.Divisions ? row.Divisions.includes(divisionFilter) : row.Division === divisionFilter);
-            const matchesRound = !roundFilter || row.Round === roundFilter;
-            
-            const matchesSearch = !query || 
-                row.Event.toLowerCase().includes(query) || 
-                row.Round.toLowerCase().includes(query) ||
-                row.Competition.toLowerCase().includes(query) ||
-                row.Division.toLowerCase().includes(query) ||
-                (row.Comment && row.Comment.toLowerCase().includes(query));
 
-            return matchesDay && matchesComp && matchesEvent && matchesDiv && matchesRound && matchesSearch;
+            
+
+
+            return  matchesComp && matchesEvent && matchesDiv;
         });
 
         renderTable(filtered);
@@ -1669,12 +1614,12 @@ console.log(
     }
 
     function setupListeners() {
-        document.getElementById('txtSearch').oninput = handleInterfaceUpdate;
-        document.getElementById('selDay').onchange = handleInterfaceUpdate;
+
+
         document.getElementById('selComp').onchange = handleInterfaceUpdate;
         document.getElementById('selEvent').onchange = handleInterfaceUpdate;
         document.getElementById('selDivision').onchange = handleInterfaceUpdate;
-        document.getElementById('selRound').onchange = handleInterfaceUpdate;
+
     }
 
 function getDivisionIconHtml(divisionText) {
