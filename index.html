@@ -1948,7 +1948,11 @@ return iconPrefix + ' ' + formattedCommentHtml;
         : '') +
 '</td>' +
 '<td>' + row.Competition + '</td>' +
-                       '<td>' + (typeof getCategoryIconHtml === 'function' ? getCategoryIconHtml(row.Event) : row.Event) + '</td>' +
+                       '<td>' +
+getEventLogoHtml(row.Event) +
+'&nbsp;&nbsp;' +
+row.Event +
+'</td>' +
                        '<td>' + 
                            (() => {
                             const activeDivFilter = selectedDivisions;
