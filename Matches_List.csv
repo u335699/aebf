@@ -79,7 +79,7 @@ Day,Date,Time,Competition,Event,Division,Round,Comment,Warning
 4,21/11/2026,14:00:00,Nationals,Plate,Masters,Semi Final,,
 8,25/11/2026,18:00:00,Nationals,Plate,Masters,Grand Final,,
 1,18/11/2026,21:15:00,Nationals,Plate,Open,Last 256,As many as required,
-1,18/11/2026,21:15:00,Nationals,Plate,Open,Last 128,Players with byes,
+1,18/11/2026,21:15:00,Nationals,Plate,Open,Last 128,Matches with players not in last 256,
 1,18/11/2026,22:15:00,Nationals,Plate,Open,Last 128,Continued,
 2,19/11/2026,20:30:00,Nationals,Teams,Women,Round 6,,
 4,21/11/2026,9:00:00,Nationals,Plate,Open,Last 32,,Possible clash with Bar Box.<br><small><i>AEBF TD will manage affected matches</i></small>
