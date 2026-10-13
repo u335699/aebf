@@ -1066,13 +1066,21 @@ background: white;
             <div class="filter-item reset-filter-item">
                 <label>&nbsp;</label>
                 <button id="resetButton"
-class="filter-btn"type="button">
-                Reset
+                class="filter-btn" type="button">
+                    Reset
                 </button>
-</div>			
-			
+            </div>
+            
+            <div class="filter-item" style="display:none;">
+                <label>&nbsp;</label>
+                <button id="pdfButton"
+                class="filter-btn" type="button"
+                >
+                    PDF
+                </button>
+            </div>
 
-        </div>
+            </div>
 
 
 
@@ -1147,6 +1155,63 @@ TEAMS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/teans.png',
 SINGLES: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/singles.png',
 SHOOTOUT: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/shootout.png',
 };
+
+
+
+const PDF_EVENT_ICONS = {
+
+    'Singles':
+        'https://raw.githubusercontent.com/u335699/aebf/main/singles.png',
+
+    'Doubles':
+        'https://raw.githubusercontent.com/u335699/aebf/main/doubles.png',
+
+    'Teams':
+        'https://raw.githubusercontent.com/u335699/aebf/main/teans.png',
+
+    'Plate':
+        'https://raw.githubusercontent.com/u335699/aebf/main/Plate_cropped.png',
+
+    'Shootout':
+        'https://raw.githubusercontent.com/u335699/aebf/main/shootout.png',
+
+    '6 Red':
+        'https://raw.githubusercontent.com/u335699/aebf/main/6_red_cropped.png'
+};
+
+const PDF_ICON_CACHE = {};
+
+
+async function loadPdfIcons() {
+
+const entries =
+    Object.entries(PDF_EVENT_ICONS);
+
+await Promise.all(
+
+    entries.map(async ([key, url]) => {
+
+        const response =
+            await fetch(url);
+
+        const blob =
+            await response.blob();
+
+        const reader =
+            new FileReader();
+
+        PDF_ICON_CACHE[key] =
+            await new Promise(resolve => {
+
+                reader.onload =
+                    () => resolve(reader.result);
+
+                reader.readAsDataURL(blob);
+            });
+    })
+);
+}
+
 
 const LEFT_HEADER_LOGOS = [
     LOGOS.NATIONALS,
@@ -1442,6 +1507,7 @@ button.innerHTML =
 }
 
 window.addEventListener('DOMContentLoaded', function() {
+    loadPdfIcons();
     fetch('https://u335699.github.io/aebf/Matches_List.csv')
         .then(response => {
             if (!response.ok) throw new Error('File not found');
@@ -2157,6 +2223,31 @@ row.Event +
         renderTable(filtered);
     }
 
+    function getFilteredRows() {
+
+return dataset.filter(row => {
+
+    const matchesComp =
+        selectedCompetitions.length === 0 ||
+        selectedCompetitions.includes(row.Competition);
+
+    const matchesEvent =
+        selectedEvents.length === 0 ||
+        selectedEvents.includes(row.Event);
+
+    const matchesDiv =
+        selectedDivisions.length === 0 ||
+        row.Divisions.some(div =>
+            selectedDivisions.includes(div)
+        );
+
+    return matchesComp &&
+           matchesEvent &&
+           matchesDiv;
+});
+}
+
+
     function handleInterfaceUpdate() {
         executeFilter();
         populateDropdowns();
@@ -2245,27 +2336,33 @@ document.querySelector('.event-logo').addEventListener('click', () => {
     const leftLogo = document.querySelector('.left-logo');
     const rightLogo = document.querySelector('.right-logo');
     const filterCard = document.querySelector('.filter-card');
+    const sponsor1 = document.querySelector('.mainSponsor1-logo');
+const sponsor2 = document.querySelector('.mainSponsor2-logo');
+
 
     logo.classList.toggle('compact');
 
     if (logo.classList.contains('compact')) {
 
-		document.getElementById('headerMask').style.display = 'none';
-		
-        filterCard.style.display = 'none';
-        leftLogo.style.display = 'none';
-        rightLogo.style.display = 'none';
-		
+document.getElementById('headerMask').style.display = 'none';
 
-    } else {
+filterCard.style.display = 'none';
+leftLogo.style.display = 'none';
+rightLogo.style.display = 'none';
+sponsor1.style.display = 'none';
+sponsor2.style.display = 'none';
+
+} else {
 
 document.getElementById('headerMask').style.display = 'block';
 
-        filterCard.style.display = '';
-        leftLogo.style.display = '';
-        rightLogo.style.display = '';
+filterCard.style.display = '';
+leftLogo.style.display = '';
+rightLogo.style.display = '';
+sponsor1.style.display = '';
+sponsor2.style.display = '';
 
-    }
+}
 
 });
 
@@ -2370,6 +2467,414 @@ document.getElementById('headerMask').style.display = 'block';
 }
 
 
+function getDivisionOrder(div) {
+
+const clean = div.toLowerCase();
+
+if (clean === 'open') return 1;
+if (clean === 'women') return 2;
+if (clean.includes('master')) return 3;
+if (clean.includes('60')) return 4;
+if (clean.includes('50')) return 5;
+if (clean.includes('23')) return 6;
+if (clean.includes('cup')) return 7;
+
+return 99;
+}
+
+
+
+
+
+
+function generatePdf() {
+
+const { jsPDF } = window.jspdf;
+
+const doc = new jsPDF({
+    orientation: 'landscape'
+});
+
+
+
+
+
+const rows = getFilteredRows();
+
+const body = [];
+
+let lastDay = null;
+let lastTime = null;
+
+rows.forEach(row => {
+
+    if (row.Day !== lastDay) {
+
+        const dateParts = row.Date.split('/');
+
+const dayNum = parseInt(dateParts[0], 10);
+const monthNum = parseInt(dateParts[1], 10);
+const yearNum = parseInt(dateParts[2], 10);
+
+const d = new Date(yearNum, monthNum - 1, dayNum);
+
+const weekday =
+    d.toLocaleDateString('en-AU', {
+        weekday: 'short'
+    });
+
+const month =
+    d.toLocaleDateString('en-AU', {
+        month: 'short'
+    });
+
+    body.push([
+    {
+        content:
+            `DAY ${row.Day} • ${weekday} ${dayNum} ${month} ${yearNum}`,
+        colSpan: 6,
+        styles: {
+            halign: 'center',
+            fillColor: [15, 23, 42],
+            textColor: [255, 255, 255],
+            fontStyle: 'bold'
+        }
+    }
+]);
+
+        lastDay = row.Day;
+        lastTime = null;
+    }
+    const displayTime =
+    row.Time === lastTime
+        ? ''
+        : row.Time.split(':').slice(0, 2).join(':');
+
+lastTime = row.Time;
+
+body.push([
+    displayTime,
+    row.Competition,
+    {
+        event: row.Event
+    },
+    row.Divisions,
+    row.Round.replace(/<[^>]*>/g, ''),
+    (row.Comment || '').replace(/<[^>]*>/g, ''),
+    row.Time
+]);
+``
+
+});
+
+doc.setFontSize(18);
+doc.text('Cuesports Carnival Down Under', 14, 15);
+
+doc.setFontSize(10);
+
+const competition =
+    selectedCompetitions.length
+        ? selectedCompetitions.join(', ')
+        : 'All';
+
+const event =
+    selectedEvents.length
+        ? selectedEvents.join(', ')
+        : 'All';
+
+const division =
+    selectedDivisions.length
+        ? selectedDivisions.join(', ')
+        : 'All';
+
+doc.text(
+    `Competition: ${competition}`,
+    14,
+    25
+);
+
+doc.text(
+    `Event: ${event}`,
+    14,
+    31
+);
+
+doc.text(
+    `Division: ${division}`,
+    14,
+    37
+);
+
+
+
+doc.autoTable({
+    startY: 45,
+
+    styles: {
+    cellPadding: 1
+},
+
+
+
+    columnStyles: {
+    0: { cellWidth: 20 },
+    1: { cellWidth: 40 },
+    2: { cellWidth: 25 },
+    3: { cellWidth: 55 },
+    4: { cellWidth: 60 },
+    5: { cellWidth: 'auto' }
+},
+
+
+head: [[
+    'Time',
+    'Competition',
+    'Event',
+    'Division',
+    'Round',
+    'Comments'
+]],
+
+    body: body,
+
+    didParseCell: function (data) {
+
+        if (data.section === 'body') {
+
+const rowIndex = data.row.index;
+
+const currentTime = data.row.raw[6];
+
+const previousTime =
+    rowIndex > 0
+        ? data.table.body[rowIndex - 1].raw[6]
+        : null;
+
+const nextTime =
+    rowIndex < data.table.body.length - 1
+        ? data.table.body[rowIndex + 1].raw[6]
+        : null;
+
+const startsGroup =
+    currentTime !== previousTime;
+
+const endsGroup =
+    currentTime !== nextTime;
+
+if (startsGroup) {
+    data.cell.styles.lineWidth = {
+        top: 0.5
+    };
+}
+
+if (endsGroup) {
+    data.cell.styles.lineWidth = {
+        ...(data.cell.styles.lineWidth || {}),
+        bottom: 0.5
+    };
+}
+}
+
+
+if (
+    data.section === 'body' &&
+    data.column.index === 2 &&
+    data.cell.raw &&
+    data.cell.raw.event
+) {
+    data.cell.text = [data.cell.raw.event];
+}
+
+data.cell.styles.cellPadding = {
+    top: 2,
+    right: 2,
+    bottom: 2,
+    left: 2
+};
+
+if (
+    data.section === 'body' &&
+    data.column.index === 2 &&
+    data.cell.raw &&
+    data.cell.raw.event
+) {
+    data.cell.text = [data.cell.raw.event];
+
+    data.cell.styles.cellPadding = {
+        top: 2,
+        right: 2,
+        bottom: 2,
+        left: 8
+    };
+}
+
+        if (
+    data.section === 'body' &&
+    data.column.index === 3 &&
+    Array.isArray(data.cell.raw)
+) {
+    data.cell.text = [''];
+}
+
+
+
+    },
+
+    didDrawCell: function(data) {
+
+        if (
+    data.section === 'body' &&
+    data.column.index === 2 &&
+    data.cell.raw &&
+    data.cell.raw.event
+) {
+
+    const icon =
+        PDF_ICON_CACHE[data.cell.raw.event];
+
+    if (icon) {
+
+        doc.addImage(
+            icon,
+            'PNG',
+            data.cell.x + 2,
+            data.cell.y + 1,
+            4,
+            4
+        );
+    }
+
+    return;
+}
+
+if (
+    data.section !== 'body' ||
+    data.column.index !== 3 ||
+    !Array.isArray(data.cell.raw)
+) {
+    return;
+}
+
+const divs = data.cell.raw;
+
+data.cell.text = [];
+
+let x = data.cell.x + 4;
+const y = data.cell.y + data.cell.height / 2;
+
+divs.sort(
+    (a, b) =>
+        getDivisionOrder(a) -
+        getDivisionOrder(b)
+);
+
+divs.forEach(div => {
+
+    const clean = div.toLowerCase();
+
+    let label = div;
+    let colour = [0, 0, 255];
+
+    if (clean === 'open') {
+        label = 'O';
+        colour = [0, 0, 255];
+    }
+    else if (clean === 'men') {
+        label = 'M';
+        colour = [0, 0, 255];
+    }
+    else if (clean === 'women') {
+        label = 'W';
+        colour = [255, 0, 255];
+    }
+    else if (clean.includes('50')) {
+        label = '50+';
+        colour = [255, 0, 255];
+    }
+    else if (clean.includes('60')) {
+        label = '60+';
+        colour = [0, 128, 0];
+    }
+    else if (clean.includes('master')) {
+        label = 'M';
+        colour = [0, 128, 0];
+    }
+    else if (clean.includes('23')) {
+        label = 'U23';
+        colour = [0, 0, 255];
+    }
+    else if (clean.includes('cup')) {
+        label = 'CUP';
+        colour = [255, 200, 0];
+    }
+
+    doc.setFillColor(...colour);
+
+    doc.setDrawColor(...colour);
+doc.setFillColor(255, 255, 255);
+doc.setLineWidth(0.50);
+doc.circle(
+    x + 4,
+    y,
+    3,
+    'FD'
+);
+
+doc.setTextColor(...colour);
+doc.setFontSize(6);
+
+doc.text(
+    label,
+    x + 4,
+    y + 1,
+    {
+        align: 'center'
+    }
+);
+
+x += 7;
+});
+}
+
+});
+
+
+const pageCount = doc.internal.getNumberOfPages();
+
+for (let i = 1; i <= pageCount; i++) {
+
+    doc.setPage(i);
+
+    doc.setFontSize(8);
+
+    doc.text(
+        `Page ${i} of ${pageCount}`,
+        280,
+        200,
+        { align: 'right' }
+    );
+}
+
+
+
+window.open(
+    doc.output('bloburl'),
+    '_blank'
+);
+}
+
+
+
+document
+    .getElementById('pdfButton')
+    .addEventListener('click', generatePdf);
+
+
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
 </body>
 </html>
