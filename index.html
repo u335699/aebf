@@ -32,7 +32,7 @@ background-attachment: fixed;
 		
 		.event-logo {
 display: block;
-width: 120px;
+width: 360px;
 height: auto;
 margin: 0 auto 12px auto;
 cursor: pointer;
@@ -40,18 +40,35 @@ cursor: pointer;
 
 
 
-.left-logo {
-    width: 90px;
-    height: auto;
-    position: relative;
-    left: 150px;
+
+
+.logo-bar {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr 2fr 1fr;
+    align-items: center;
+    max-width: 1200px !important; 
+    margin: 0 auto;
 }
 
+.logo-bar img {
+    justify-self: center;
+}
+
+.left-logo,
 .right-logo {
     width: 90px;
     height: auto;
-    position: relative;
-    right: 150px;
+}
+
+.mainSponsor1-logo,
+.mainSponsor2-logo {
+    width: 160px;
+    height: auto;
+}
+
+.event-logo {
+    width: 320px;
+    height: auto;
 }
 
 .left-logo,
@@ -258,7 +275,7 @@ cursor: pointer;
     transform: translateY(-50%);
     width: 48px;
     height: 32px;
-    background: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/mitchell_logo_exact_border.png') center center / contain no-repeat;
+    background: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Soil-X-logo.png') center center / contain no-repeat;
 }
 
 .day-header-row::after {
@@ -269,7 +286,7 @@ cursor: pointer;
     transform: translateY(-50%);
     width: 48px;
     height: 32px;
-    background: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/cls_logo_exact_border.png') center center / contain no-repeat;
+    background: url('https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/CLS-2024.png') center center / contain no-repeat;
 }
 
 
@@ -440,6 +457,57 @@ object-fit: contain;
     display: none;
 }
 
+.logo-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto auto 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Top row */
+.left-logo {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    transform: translateX(15px);
+}
+
+.event-logo {
+    grid-column: 3 / 5;
+    grid-row: 1;
+    justify-self: center;
+    width: 180px;
+}
+
+.right-logo {
+    grid-column: 6;
+    grid-row: 1;
+    justify-self: end;
+    transform: translateX(-15px);
+}
+
+/* Bottom row */
+.mainSponsor1-logo {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    justify-self: center;
+    width: 100px;
+}
+
+.mainSponsor2-logo {
+    grid-column: 4 / 7;
+    grid-row: 2;
+    justify-self: center;
+    width: 100px;
+}
+
+.mainSponsor1-logo,
+.mainSponsor2-logo {
+
+    transform: translateY(-8px);
+}
+
+
 #headerMask {
     position: fixed;
     top: 0;
@@ -475,12 +543,12 @@ z-index: 1000;
 }
 
 .left-logo {
-    width: 60px;
+    width: 50px;
     left: 10px;
 }
 
 .right-logo {
-    width: 60px;
+    width: 50px;
     right: 10px;
 }
 
@@ -897,26 +965,39 @@ background: white;
 <header>
  
 
+<div class="logo-bar">
+    <img
+    src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-senior-championships-2026.png"
+    id="leftHeaderLogo"
+    alt=""
+    class="left-logo">
+    <img
+    src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Soil-X-logo-White.png"
+    id="mainSponsorLogo1"
+    alt=""
+    class="mainSponsor1-logo">
+    <img
+    src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/carnival-logo-tight-transparent.png"
+    alt="AEBF Senior Championships 2026"
+    class="event-logo">
+    <img
+    src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/CLS-2024.png"
+    id="mainSponsorLogo2"
+    alt=""
+    class="mainSponsor2-logo">
+    <img
+    src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Mitchell.png"
+    id="rightHeaderLogo"
+    alt=""
+    class="right-logo">
+</div>
 
-<img
-src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/big-guns-top.png"
-id="leftHeaderLogo"
-alt=""
-class="left-logo">
- 
-<img
-src="https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-senior-championships-2026.png"
-alt="AEBF Senior Championships 2026"
-class="event-logo">
 
 
- 
-<img
-src="https://t140.com/assets/images/T140__Logo_Dark_Background.png"
-id="rightHeaderLogo"
-alt=""
-class="right-logo">
- 
+
+
+
+
 </header>
 
 
@@ -1029,10 +1110,11 @@ class="filter-btn"type="button">
 <script>
 
 const LOGOS = {
+CARNIVAL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/carnival-logo-tight-transparent.png',
 BIG_GUNS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/big-guns-top.png',
 KANGAROO: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Trophey-Kangaroo2026Logo-scaled.png',
 MITCHELL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Mitchell.png',
-CLS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/CLS-scaled.png',
+CLS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/CLS-2024.png',
 HEYBALL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/OPBA-Full-Colour-Logo-scaled.png',
 HEYBALL_WHITE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/OPBA-White-Colour-Logo-scaled.png',
 LIBER: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/LiberWin.png',
@@ -1043,10 +1125,12 @@ WPA: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/WPA-logo-01-sc
 ULTIMATE_POOL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/Ultimate-Pool-Black-scaled.jpg',
 AUS_CUP: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-australia-cup-2026.png',
 INDIGENOUS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2025/07/thumbnail_Artboard-73@2x.png',
-T140: 'https://www.cuesportsaus.org/wp-content/uploads/2023/12/t140-logo.webp',
+T140: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/t140-logo.webp',
 T140_DARK_BG: 'https://t140.com/assets/images/T140__Logo_Dark_Background.png',
 PRIDE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/Rainbow_8_Ball.png',
 PRIDE_WORDS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/PIS_RGB_K.png',
+SOILX: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Soil-X-logo.png',
+SOILX_WHITE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Soil-X-logo-White.png',
 CUEBALL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2024/09/cueball-white.png',
 NATIONALS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-senior-championships-2026.png',
 POOLSTAT: 'https://info.poolstat.net.au/wp-content/uploads/2020/03/poolstat-header-logo.jpg',
@@ -1060,6 +1144,7 @@ SHOOTOUT: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/shootout.
 };
 
 const LEFT_HEADER_LOGOS = [
+    LOGOS.NATIONALS,
     LOGOS.BIG_GUNS,
     LOGOS.HEYBALL_WHITE,
 	LOGOS.AUS_CUP,
@@ -1068,9 +1153,9 @@ const LEFT_HEADER_LOGOS = [
 ];
 
 const RIGHT_HEADER_LOGOS = [
-    LOGOS.T140_DARK_BG,
     LOGOS.MITCHELL,
-	LOGOS.CLS,
+    LOGOS.T140_DARK_BG,
+
     LOGOS.ULTIMATE_POOL,
 	LOGOS.CUEBALL,
 	LOGOS.POOLSTAT_WHITE
