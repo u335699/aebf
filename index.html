@@ -100,6 +100,19 @@ cursor: pointer;
     box-sizing: border-box;
 }
 
+.filter-item.reset-filter-item {
+    flex-direction: row;
+    align-items: end;
+}
+
+.filter-item.reset-filter-item label {
+    display: none;
+}
+
+.filter-item.reset-filter-item button {
+    flex: 1;
+}
+
 .filter-item {
     display: flex;
     flex-direction: column;
@@ -1065,17 +1078,14 @@ background: white;
 			
             <div class="filter-item reset-filter-item">
                 <label>&nbsp;</label>
+            
                 <button id="resetButton"
                 class="filter-btn" type="button">
                     Reset
                 </button>
-            </div>
             
-            <div class="filter-item" style="display:none;">
-                <label>&nbsp;</label>
                 <button id="pdfButton"
-                class="filter-btn" type="button"
-                >
+                class="filter-btn" type="button" style="display:none;">
                     PDF
                 </button>
             </div>
