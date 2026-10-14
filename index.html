@@ -1081,12 +1081,12 @@ background: white;
             
                 <button id="resetButton"
                 class="filter-btn" type="button">
-                    Reset
+                    ↺ Reset
                 </button>
             
                 <button id="pdfButton"
-                class="filter-btn" type="button" style="display:none;">
-                    PDF
+                class="filter-btn" type="button">
+                    📄 PDF
                 </button>
             </div>
 
@@ -1132,61 +1132,59 @@ background: white;
 
 <script>
 
-const LOGOS = {
-CARNIVAL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/carnival-logo-tight-transparent.png',
-BIG_GUNS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/big-guns-top.png',
-KANGAROO: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Trophey-Kangaroo2026Logo-scaled.png',
-MITCHELL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Mitchell.png',
-CLS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/CLS-2024.png',
-HEYBALL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/OPBA-Full-Colour-Logo-scaled.png',
-HEYBALL_WHITE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/OPBA-White-Colour-Logo-scaled.png',
-LIBER: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/LiberWin.png',
-DYNA: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/DYNA-SPHERES-LOGO.png',
-WPATV: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/WPA-TV-Logo.png',
-JOY: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/JOY-logo.png',
-WPA: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/WPA-logo-01-scaled.png',
-ULTIMATE_POOL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/Ultimate-Pool-Black-scaled.jpg',
-AUS_CUP: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-australia-cup-2026.png',
-INDIGENOUS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2025/07/thumbnail_Artboard-73@2x.png',
-T140: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/t140-logo.webp',
-T140_DARK_BG: 'https://t140.com/assets/images/T140__Logo_Dark_Background.png',
-PRIDE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/Rainbow_8_Ball.png',
-PRIDE_WORDS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2023/08/PIS_RGB_K.png',
-SOILX: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Soil-X-logo.png',
-SOILX_WHITE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Soil-X-logo-White.png',
-CUEBALL: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2024/09/cueball-white.png',
-NATIONALS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/09/aebf-senior-championships-2026.png',
-POOLSTAT: 'https://info.poolstat.net.au/wp-content/uploads/2020/03/poolstat-header-logo.jpg',
-POOLSTAT_WHITE: 'https://info.poolstat.net.au/wp-content/uploads/2020/03/poolstat-dash-logo.png',
-SIX_RED: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/6_red_cropped.png',
-PLATE: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/Plate_cropped-1.png',
-DOUBLES: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/doubles.png',
-TEAMS: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/teans.png',
-SINGLES: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/singles.png',
-SHOOTOUT: 'https://play.aebf.com.au/wp-content/uploads/sites/6/2026/10/shootout.png',
-};
+const IMG = 'https://u335699.github.io/aebf/images/';
 
+const LOGOS = {
+
+// Header
+CARNIVAL:      IMG + 'header_carnival.png',
+KANGAROO:      IMG + 'header_kangaroo.png',
+
+// Competition
+AUS_CUP:       IMG + 'comp_aus_cup.png',
+BIG_GUNS:      IMG + 'comp_big_guns.png',
+HEYBALL:       IMG + 'comp_heyball_colour.png',
+HEYBALL_WHITE: IMG + 'comp_heyball_white.png',
+INDIGENOUS:    IMG + 'comp_indigenous.png',
+NATIONALS:     IMG + 'comp_nationals.png',
+PRIDE:         IMG + 'comp_pride_round.png',
+PRIDE_WORDS:   IMG + 'comp_pride_words.png',
+T140:          IMG + 'comp_t140_colour.webp',
+T140_DARK_BG:  IMG + 'comp_t140_white.png',
+ULTIMATE_POOL: IMG + 'comp_ultimate_pool.jpg',
+WPA:           IMG + 'comp_wpa.png',
+
+// Events
+SIX_RED:       IMG + 'event_6red.png',
+DOUBLES:       IMG + 'event_doubles.png',
+PLATE:         IMG + 'event_plate.png',
+SHOOTOUT:      IMG + 'event_shootout.png',
+SINGLES:       IMG + 'event_singles.png',
+TEAMS:         IMG + 'event_teams.png',
+
+// Sponsors
+CLS:           IMG + 'sponsor_cls.png',
+CUEBALL:       IMG + 'sponsor_cueballtv.png',
+DYNA:          IMG + 'sponsor_dyna.png',
+JOY:           IMG + 'sponsor_joy.png',
+LIBER:         IMG + 'sponsor_liber.png',
+MITCHELL:      IMG + 'sponsor_mitchell.png',
+POOLSTAT:      IMG + 'sponsor_poolstat.webp',
+POOLSTAT_WHITE:IMG + 'sponsor_poolstat_white.webp',
+SOILX:         IMG + 'sponsor_soilx.png',
+SOILX_WHITE:   IMG + 'sponsor_soilx_white.png',
+WPATV:         IMG + 'sponsor_wpatv.png'
+};
 
 
 const PDF_EVENT_ICONS = {
 
-    'Singles':
-        'https://raw.githubusercontent.com/u335699/aebf/main/singles.png',
-
-    'Doubles':
-        'https://raw.githubusercontent.com/u335699/aebf/main/doubles.png',
-
-    'Teams':
-        'https://raw.githubusercontent.com/u335699/aebf/main/teans.png',
-
-    'Plate':
-        'https://raw.githubusercontent.com/u335699/aebf/main/Plate_cropped.png',
-
-    'Shootout':
-        'https://raw.githubusercontent.com/u335699/aebf/main/shootout.png',
-
-    '6 Red':
-        'https://raw.githubusercontent.com/u335699/aebf/main/6_red_cropped.png'
+'Singles': LOGOS.SINGLES,
+'Doubles': LOGOS.DOUBLES,
+'Teams': LOGOS.TEAMS,
+'Plate': LOGOS.PLATE,
+'Shootout': LOGOS.SHOOTOUT,
+'6 Red': LOGOS.SIX_RED
 };
 
 const PDF_ICON_CACHE = {};
@@ -2493,7 +2491,156 @@ return 99;
 }
 
 
+function getPdfComment(row) {
 
+function processMessage(sourceText) {
+
+    if (!sourceText || sourceText.trim() === '') {
+        return '';
+    }
+
+    const tracks = sourceText.split(' / ');
+
+    const commentMap = {};
+
+    tracks.forEach(track => {
+
+        if (selectedDivisions.length > 0 && track.includes("[")) {
+
+            const bracketText =
+                track.substring(
+                    track.indexOf("[") + 1,
+                    track.indexOf("]")
+                ).trim().toLowerCase();
+
+            const matchesCurrentSelection =
+                selectedDivisions.some(div => {
+
+                    const cleanFilter =
+                        div.toLowerCase();
+
+                    if (cleanFilter === 'open' && bracketText === 'o') return true;
+                    if ((cleanFilter === 'men' || cleanFilter === 'mens') && bracketText === 'm') return true;
+                    if ((cleanFilter === 'women' || cleanFilter === 'womens') && bracketText === 'w') return true;
+                    if (cleanFilter.includes('50') && bracketText.includes('50')) return true;
+                    if (cleanFilter.includes('60') && bracketText.includes('60')) return true;
+                    if (cleanFilter.includes('23') && bracketText.includes('23')) return true;
+                    if (cleanFilter.includes('master') && bracketText === 'mas') return true;
+                    if (cleanFilter.includes('cup') && bracketText === 'cup') return true;
+
+                    return false;
+                });
+
+            if (!matchesCurrentSelection) {
+                return;
+            }
+        }
+
+        if (track.includes("[")) {
+
+            const label =
+                track.substring(
+                    track.indexOf("[") + 1,
+                    track.indexOf("]")
+                ).trim();
+
+                const message =
+    track.substring(
+        track.indexOf("]") + 1
+    )
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?small>/gi, '')
+    .replace(/<\/?i>/gi, '')
+    .replace(/<[^>]+>/g, '')
+    .trim();
+
+            if (message) {
+
+                if (!commentMap[message]) {
+                    commentMap[message] = [];
+                }
+
+                if (!commentMap[message].includes(label)) {
+                    commentMap[message].push(label);
+                }
+            }
+        }
+    });
+
+    const formattedSegments = [];
+
+    const visibleDivisionCount =
+        selectedDivisions.length > 0
+            ? row.Divisions.filter(div =>
+                  selectedDivisions.includes(div)
+              ).length
+            : row.Divisions.length;
+
+    Object.keys(commentMap).forEach(messageText => {
+
+        const sortedCommentDivs =
+            [...commentMap[messageText]]
+                .sort(
+                    (a, b) =>
+                        getDivisionOrderRank(a) -
+                        getDivisionOrderRank(b)
+                );
+
+        if (
+            sortedCommentDivs.length ===
+            visibleDivisionCount
+        ) {
+
+            formattedSegments.push(
+                messageText
+            );
+
+        } else {
+
+            formattedSegments.push(
+                messageText +
+                ' (' +
+                sortedCommentDivs.join(', ') +
+                ' only)'
+            );
+        }
+    });
+
+    if (
+        formattedSegments.length === 0 &&
+        !sourceText.includes('[')
+    ) {
+        return sourceText
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?small>/gi, '')
+    .replace(/<\/?i>/gi, '')
+    .replace(/<[^>]+>/g, '')
+    .trim();
+``
+    }
+
+    return formattedSegments.join(' • ');
+}
+
+
+const output = [];
+
+const comments =
+    processMessage(row.Comment);
+
+if (comments) {
+    output.push(comments);
+}
+
+const warnings =
+    processMessage(row.Warning);
+
+if (warnings) {
+    output.push(warnings);
+}
+
+return output.join('\n');
+}
 
 
 
@@ -2504,6 +2651,7 @@ const { jsPDF } = window.jspdf;
 const doc = new jsPDF({
     orientation: 'landscape'
 });
+
 
 
 
@@ -2539,17 +2687,17 @@ const month =
     });
 
     body.push([
-    {
-        content:
-            `DAY ${row.Day} • ${weekday} ${dayNum} ${month} ${yearNum}`,
-        colSpan: 6,
-        styles: {
-            halign: 'center',
-            fillColor: [15, 23, 42],
-            textColor: [255, 255, 255],
-            fontStyle: 'bold'
-        }
+{
+    content:
+        `DAY ${row.Day} • ${weekday} ${dayNum} ${month} ${yearNum}`,
+    colSpan: 6,
+    styles: {
+        halign: 'center',
+        fillColor: [0, 104, 71],      // Australian green
+        textColor: [255, 255, 255],   // White
+        fontStyle: 'bold'
     }
+}
 ]);
 
         lastDay = row.Day;
@@ -2570,58 +2718,52 @@ body.push([
     },
     row.Divisions,
     row.Round.replace(/<[^>]*>/g, ''),
-    (row.Comment || '').replace(/<[^>]*>/g, ''),
+    getPdfComment(row),
     row.Time
 ]);
-``
+
 
 });
 
-doc.setFontSize(18);
-doc.text('Cuesports Carnival Down Under', 14, 15);
 
-doc.setFontSize(10);
 
-const competition =
-    selectedCompetitions.length
-        ? selectedCompetitions.join(', ')
-        : 'All';
-
-const event =
-    selectedEvents.length
-        ? selectedEvents.join(', ')
-        : 'All';
-
-const division =
-    selectedDivisions.length
-        ? selectedDivisions.join(', ')
-        : 'All';
-
-doc.text(
-    `Competition: ${competition}`,
-    14,
-    25
+doc.addImage(
+    LOGOS.SOILX,
+    'PNG',
+    15,
+    8,
+    40,
+    18
 );
 
-doc.text(
-    `Event: ${event}`,
-    14,
-    31
+doc.addImage(
+    LOGOS.CARNIVAL,
+    'PNG',
+    118,
+    8,
+    52,
+    18
 );
 
-doc.text(
-    `Division: ${division}`,
-    14,
-    37
+doc.addImage(
+    LOGOS.CLS,
+    'PNG',
+    244,
+    8,
+    36,
+    18
 );
+``
+
+
 
 
 
 doc.autoTable({
-    startY: 45,
+    startY: 32,
 
     styles: {
-    cellPadding: 1
+    cellPadding: 1,valign: 'middle'
 },
 
 
@@ -2632,9 +2774,14 @@ doc.autoTable({
     2: { cellWidth: 25 },
     3: { cellWidth: 55 },
     4: { cellWidth: 60 },
-    5: { cellWidth: 'auto' }
+    5: { cellWidth: 'auto', fontSize: 6 }
 },
 
+headStyles: {
+    fillColor: [255, 203, 5],
+    textColor: [0, 104, 71],
+    fontStyle: 'bold'
+},
 
 head: [[
     'Time',
@@ -2718,12 +2865,19 @@ if (
     };
 }
 
-        if (
+if (
     data.section === 'body' &&
     data.column.index === 3 &&
     Array.isArray(data.cell.raw)
 ) {
     data.cell.text = [''];
+
+    data.cell.styles.cellPadding = {
+        top: 3,
+        right: 2,
+        bottom: 3,
+        left: 2
+    };
 }
 
 
@@ -2748,7 +2902,7 @@ if (
             icon,
             'PNG',
             data.cell.x + 2,
-            data.cell.y + 1,
+            data.cell.y + (data.cell.height - 4) / 2,
             4,
             4
         );
@@ -2765,7 +2919,13 @@ if (
     return;
 }
 
-const divs = data.cell.raw;
+const divs =
+    selectedDivisions.length
+        ? data.cell.raw.filter(div =>
+              selectedDivisions.includes(div)
+          )
+        : data.cell.raw;
+
 
 data.cell.text = [];
 
@@ -2848,6 +3008,20 @@ x += 7;
 
 });
 
+const competition =
+    selectedCompetitions.length
+        ? selectedCompetitions.join(', ')
+        : 'All';
+
+const event =
+    selectedEvents.length
+        ? selectedEvents.join(', ')
+        : 'All';
+
+const division =
+    selectedDivisions.length
+        ? selectedDivisions.join(', ')
+        : 'All';
 
 const pageCount = doc.internal.getNumberOfPages();
 
@@ -2857,12 +3031,59 @@ for (let i = 1; i <= pageCount; i++) {
 
     doc.setFontSize(8);
 
-    doc.text(
-        `Page ${i} of ${pageCount}`,
-        280,
-        200,
-        { align: 'right' }
-    );
+    const now = new Date();
+
+const day = now.toLocaleDateString('en-AU', {
+    weekday: 'long'
+});
+
+const date = now.getDate();
+
+const suffix =
+    date % 10 === 1 && date !== 11 ? 'st' :
+    date % 10 === 2 && date !== 12 ? 'nd' :
+    date % 10 === 3 && date !== 13 ? 'rd' :
+    'th';
+
+const monthYear =
+    now.toLocaleDateString('en-AU', {
+        month: 'long',
+        year: 'numeric'
+    });
+
+const time =
+    now.toLocaleTimeString('en-AU', {
+        hour: 'numeric',
+        minute: '2-digit'
+    }).toLowerCase();
+
+const footerText =
+    `Competition: ${competition} • ` +
+    `Event: ${event} • ` +
+    `Division: ${division} • ` +
+    `Printed on ${day} ${date}${suffix} ${monthYear} at ${time} • ` +
+    `Page ${i} of ${pageCount}`;
+
+doc.setFontSize(8);
+
+
+
+// LEFT
+doc.text(
+    `Competition: ${competition} • Event: ${event} • Division: ${division}  `,
+    14,
+    200
+);
+
+// CENTRE
+doc.text(
+    `Generated on ${day} ${date}${suffix} ${monthYear} at ${time} (Page ${i} of ${pageCount})`,
+    283,
+    200,
+    {
+        align: 'right'
+    }
+);
 }
 
 
