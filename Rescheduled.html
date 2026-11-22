@@ -3,158 +3,485 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rescheduled Matches</title>
+<title>Tournament Schedule</title>
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f9;
-        margin: 20px;
-        color: #333;
-    }
-    h1 {
-        text-align: center;
-        color: #1f4e79;
-    }
-    h2 {
-        background: #1f4e79;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        margin-top: 30px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 25px;
-        background: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    th {
-        background: #2f75b5;
-        color: white;
-        padding: 10px;
-        text-align: left;
-    }
-    td {
-        padding: 8px 10px;
-        border-bottom: 1px solid #ddd;
-    }
-    tr:nth-child(even) {
-        background: #f9f9f9;
-    }
-    .unknown {
-        color: #999;
-        font-style: italic;
-    }
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    margin:20px;
+    color:#333;
+}
+
+.container{
+    max-width:1400px;
+    margin:0 auto;
+}
+
+h1{
+    text-align:center;
+    color:#1f4e79;
+    margin-bottom:30px;
+}
+
+.schedule{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    margin-bottom:30px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.schedule th{
+    background:#1f4e79;
+    color:#fff;
+    padding:12px;
+    text-align:left;
+}
+
+.schedule td{
+    padding:10px;
+    border-bottom:1px solid #e1e1e1;
+}
+
+.schedule tr:nth-child(even){
+    background:#f8f9fb;
+}
+
+.time-header td{
+    background:#2f75b5 !important;
+    color:#fff;
+    font-weight:bold;
+    font-size:16px;
+    padding:12px;
+}
+
+.vs{
+    width:60px;
+    text-align:center;
+    font-weight:bold;
+    color:#1f4e79;
+}
+
+.team{
+    width:30%;
+    font-weight:600;
+}
+
+.tbc{
+    color:#999;
+    font-style:italic;
+}
+
+.round{
+    font-weight:bold;
+}
 </style>
 </head>
+
 <body>
 
-<h1>Rescheduled Matches</h1>
+<div class="container">
 
-<h2>Sunday 7:00 PM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Open</td><td>Doubles</td><td>L64</td><td>Bray.C - Newton.K vs Conroy.B - Fallon.D</td></tr>
-<tr><td>Open</td><td>Doubles</td><td>L64</td><td>Dempsey.S - Green.J vs Maginnis.J - Heaton.</td></tr>
-<tr><td>Open</td><td>Doubles</td><td>L32</td><td>Wheeler.R - Read.B vs Shanaher.T - Geddes.</td></tr>
-<tr><td>Open</td><td>Doubles</td><td>L16</td><td>Beagley.C - Chan.T vs Daw.X - Dinga.J</td></tr>
-<tr><td>Open</td><td>Doubles</td><td>QF</td><td>Porter.D - Boes.T vs Lomax.G - Vine.S</td></tr>
-<tr><td>Open</td><td>Plate</td><td>QF</td><td>Michael Cacciola vs Luke Anglesey</td></tr>
-<tr><td>Women</td><td>Doubles</td><td>L32</td><td>Sullivan.J - Meyer.T vs Sarmento.A - Vernon.</td></tr>
-<tr><td>Women</td><td>Plate</td><td>QF</td><td>Tanya Matthews vs Emma Cunningham</td></tr>
-<tr><td>Women</td><td>Doubles</td><td>L16</td><td>Haas.L - Woods.J vs Vine.L - Tsiakas.S</td></tr>
-<tr><td>Masters</td><td>Doubles</td><td>QF</td><td>Weekley.G - Reynolds vs McCrory.C - Lancaste</td></tr>
-<tr><td>Masters</td><td>Doubles</td><td>QF</td><td>Ballam.M - Barton.J vs Munchenberg.D - Ahma</td></tr>
-<tr><td>Masters</td><td>Doubles</td><td>QF</td><td>Vujevich.T - Morris. vs McCormick.S - Masci.</td></tr>
-<tr><td>Masters</td><td>Plate</td><td>QF</td><td>Vince Lee vs Alec Evreniadis</td></tr>
+<h1>Tournament Schedule</h1>
+
+<table class="schedule">
+
+<tr class="time-header">
+    <td colspan="6">Monday 9:00 AM</td>
+</tr>
+
+<tr>
+    <th>Division</th>
+    <th>Event</th>
+    <th>Round</th>
+    <th>Player / Team 1</th>
+    <th class="vs">VS</th>
+    <th>Player / Team 2</th>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Doubles</td>
+    <td class="round">QF</td>
+    <td class="team">Ballam.M - Barton.J</td>
+    <td class="vs">VS</td>
+    <td class="team">Munchenberg.D - Ahma</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Ashleigh De Faria</td>
+    <td class="vs">VS</td>
+    <td class="team">Jessica Woods</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Doubles</td>
+    <td class="round">L16</td>
+    <td class="team">Tohme.J - Babauta.E</td>
+    <td class="vs">VS</td>
+    <td class="team">Sarmento.A - Vernon.K (NT)</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L64</td>
+    <td class="team">Gemma Schuman</td>
+    <td class="vs">VS</td>
+    <td class="team">Elyce Harris</td>
+</tr>
+
+<tr>
+    <td>Open</td>
+    <td>Plate</td>
+    <td class="round">QF</td>
+    <td class="team">Justin Sajich</td>
+    <td class="vs">VS</td>
+    <td class="team">Cale Barrett</td>
+</tr>
+
+<tr class="time-header">
+    <td colspan="6">Monday 9:30 AM</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Doubles</td>
+    <td class="round">QF</td>
+    <td class="team">Vujevich.T - Morris.</td>
+    <td class="vs">VS</td>
+    <td class="team">McCormick.S - Masci.</td>
+</tr>
+
+<tr class="time-header">
+    <td colspan="6">Monday 10:00 AM</td>
+</tr>
+
+<tr>
+    <td>Open</td>
+    <td>Plate</td>
+    <td class="round">SF</td>
+    <td class="team">Jack Whelan</td>
+    <td class="vs">VS</td>
+    <td class="team">Cale Barrett / Justin Sajich</td>
+</tr>
+
+<tr class="time-header">
+    <td colspan="6">Monday 11:00 AM</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Tanya Matthews</td>
+    <td class="vs">VS</td>
+    <td class="team">Charlotte Williams</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Alec Evreniadis</td>
+    <td class="vs">VS</td>
+    <td class="team">Steve Jamieson</td>
+</tr>
+
+<tr class="time-header">
+    <td colspan="6">Monday 7:45 PM</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Doubles</td>
+    <td class="round">QF</td>
+    <td class="team">Haas.L - Woods.J (NSW)</td>
+    <td class="vs">VS</td>
+    <td class="team">Tohme.J - Babauta.E (VIC) / Sarmento.A - Vernon.K (NT)</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Plate</td>
+    <td class="round">SF</td>
+    <td class="team">Marg Gorski</td>
+    <td class="vs">VS</td>
+    <td class="team">Ashleigh Smith</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Plate</td>
+    <td class="round">SF</td>
+    <td class="team">Tanya Matthews / Emma Cunningham</td>
+    <td class="vs">VS</td>
+    <td class="team">Sora Le Vagueresse</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L64</td>
+    <td class="team">Kenny Boyd</td>
+    <td class="vs">VS</td>
+    <td class="team">Mayana Aspinall</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L64</td>
+    <td class="team">Jo Starick</td>
+    <td class="vs">VS</td>
+    <td class="team">Catherine Lindridge</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L64</td>
+    <td class="team">John Lehman</td>
+    <td class="vs">VS</td>
+    <td class="team">Steve Viney</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L64</td>
+    <td class="team">Colin Laoutaris</td>
+    <td class="vs">VS</td>
+    <td class="team">Jamie Stevens</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L64</td>
+    <td class="team">Jason Ahmad</td>
+    <td class="vs">VS</td>
+    <td class="team">Craig Coleman</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Doubles</td>
+    <td class="round">SF</td>
+    <td class="team">McGuire.J - Allie.L</td>
+    <td class="vs">VS</td>
+    <td class="team">Weekley.G - Reynolds.A / McCrory.C - Lancaster.A</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Doubles</td>
+    <td class="round">SF</td>
+    <td class="team">Ballam.M - Barton.J / Munchenberg.D - Ahmad.J</td>
+    <td class="vs">VS</td>
+    <td class="team">Vujevich.T - Morris.D / McCormick.S - Masci.T</td>
+</tr>
+
+<tr>
+    <td>O60</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Stacey Vine</td>
+    <td class="vs">VS</td>
+    <td class="team">Michael Swift</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Holly Va'Aelua</td>
+    <td class="vs">VS</td>
+    <td class="team">Gemma Schuma / Elyce Harris</td>
+</tr>
+
+<tr class="time-header">
+    <td colspan="6">Monday 9:15 PM</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Doubles</td>
+    <td class="round">SF</td>
+    <td class="team">Wessling.T - Lucas.J (QLD)</td>
+    <td class="vs">VS</td>
+    <td class="team">Va'Aelua.H - Raeburn.T</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Doubles</td>
+    <td class="round">SF</td>
+    <td class="team">Pologa.B - De Faria.</td>
+    <td class="vs">VS</td>
+    <td class="team"><span class="tbc">TBC</span></td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Ashleigh De Faria</td>
+    <td class="vs">VS</td>
+    <td class="team">Jessica Woods</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Kenny Boyd / Mayana Aspinall</td>
+    <td class="vs">VS</td>
+    <td class="team">Clare Shanaher</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Aaliyah Clifford</td>
+    <td class="vs">VS</td>
+    <td class="team">Jo Starick / Catherine Lindridge</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">John Lehman / Steve Viney</td>
+    <td class="vs">VS</td>
+    <td class="team">Andrew Reynolds</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Denis Hynes</td>
+    <td class="vs">VS</td>
+    <td class="team">Colin Laoutaris / Jamie Stevents</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Jason Ahmad / Craig Coleman</td>
+    <td class="vs">VS</td>
+    <td class="team">Shay Laing-Smith</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Travis Crawley</td>
+    <td class="vs">VS</td>
+    <td class="team">George Zomaya</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Singles</td>
+    <td class="round">L32</td>
+    <td class="team">Dene Heremaia</td>
+    <td class="vs">VS</td>
+    <td class="team">Gerrad Wicks</td>
+</tr>
+
+<tr>
+    <td>O60</td>
+    <td>Singles</td>
+    <td class="round">L16</td>
+    <td class="team">Steve McCormick</td>
+    <td class="vs">VS</td>
+    <td class="team">Stacey Vine / Michael Swift</td>
+</tr>
+
+<tr class="time-header">
+    <td colspan="6">Thursday 2:30 PM</td>
+</tr>
+
+<tr>
+    <td>Open</td>
+    <td>Doubles</td>
+    <td class="round">SF</td>
+    <td class="team"><span class="tbc">TBC</span></td>
+    <td class="vs">VS</td>
+    <td class="team"><span class="tbc">TBC</span></td>
+</tr>
+
+<tr>
+    <td>Open</td>
+    <td>Doubles</td>
+    <td class="round">SF</td>
+    <td class="team">Daw.X - Dinga.J (QLD)</td>
+    <td class="vs">VS</td>
+    <td class="team">Dempsey.S - Green.J (VIC)</td>
+</tr>
+
+<tr class="time-header">
+    <td colspan="6">TBA</td>
+</tr>
+
+<tr>
+    <td>Women</td>
+    <td>Plate</td>
+    <td class="round">QF</td>
+    <td class="team">Tanya Matthews</td>
+    <td class="vs">VS</td>
+    <td class="team">Emma Cunningham</td>
+</tr>
+
+<tr>
+    <td>Masters</td>
+    <td>Plate</td>
+    <td class="round">SF</td>
+    <td class="team">Stacey Vine</td>
+    <td class="vs">VS</td>
+    <td class="team">Denis Hynes</td>
+</tr>
+
+<tr>
+    <td>Open</td>
+    <td>Doubles</td>
+    <td class="round">L16</td>
+    <td class="team">Wheeler.R - Read.B</td>
+    <td class="vs">VS</td>
+    <td class="team"><span class="tbc">TBC</span></td>
+</tr>
+
+<tr>
+    <td>Open</td>
+    <td>Doubles</td>
+    <td class="round">QF</td>
+    <td class="team">Phillips.J - Di Gior</td>
+    <td class="vs">VS</td>
+    <td class="team"><span class="tbc">TBC</span></td>
+</tr>
+
+<tr>
+    <td>Open</td>
+    <td>Doubles</td>
+    <td class="round">QF</td>
+    <td class="team">Porter.D - Boes.T</td>
+    <td class="vs">VS</td>
+    <td class="team">Lomax.G - Vine.S</td>
+</tr>
+
 </table>
 
-<h2>Sunday 8:00 PM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Masters</td><td>Plate</td><td>QF</td><td>Stacey Vine vs Jamie Stevens</td></tr>
-<tr><td>Women</td><td>Doubles</td><td>QF</td><td>Wessling.T - Lucas.J vs Matthews.T - McCord.</td></tr>
-<tr><td>Open</td><td>Plate</td><td>QF</td><td>Dan Porter vs Alex Pace</td></tr>
-<tr><td>Open</td><td>Doubles</td><td>L32</td><td>Staines.J - Furner.D vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Open</td><td>Doubles</td><td>L32</td><td><span class="unknown">TBC</span> vs Marshall.J - Betts.R</td></tr>
-<tr><td>Masters</td><td>Plate</td><td>SF</td><td><span class="unknown">TBC</span> vs John Lehman</td></tr>
-<tr><td>Masters</td><td>Plate</td><td>SF</td><td><span class="unknown">TBC</span> vs Denis Hynes</td></tr>
-</table>
-
-<h2>Sunday 9:00 PM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Open</td><td>Doubles</td><td>L16</td><td><span class="unknown">TBC</span> vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Open</td><td>Doubles</td><td>L16</td><td><span class="unknown">TBC</span> vs Brann.L - Mason.T</td></tr>
-
-</table>
-
-<h2>Sunday 10:00 PM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Open</td><td>Doubles</td><td>QF</td><td>Phillips.J - Di Gior vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Open</td><td>Doubles</td><td>QF</td><td>Huang.C - Lilly.C vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Open</td><td>Doubles</td><td>QF</td><td>Crawley.T - Segal.G vs <span class="unknown">TBC</span></td></tr>
-</table>
-
-<h2>Monday 9:00 AM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Cup</td><td>Plate</td><td>L32</td><td>Andrew Paton vs Shaief Azim</td></tr>
-<tr><td>Women</td><td>Doubles</td><td>L16</td><td>Tohme.J - Babauta.E vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Women</td><td>Singles</td><td>L64</td><td>Gemma Schuman vs Elyce Harris</td></tr>
-<tr><td>Women</td><td>Singles</td><td>L32</td><td>Ashleigh De Faria vs Jessica Woods</td></tr>
-<tr><td>Open</td><td>Plate</td><td>QF</td><td>Justin Sajich vs Cale Barrett</td></tr>
-</table>
-
-<h2>Monday 7:45 PM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Women</td><td>Doubles</td><td>QF</td><td><span class="unknown">TBC</span> vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Women</td><td>Plate</td><td>SF</td><td>Marg Gorski vs Ashleigh Smith</td></tr>
-<tr><td>Women</td><td>Plate</td><td>SF</td><td><span class="unknown">TBC</span> vs Sora Le Vagueresse</td></tr>
-<tr><td>Women</td><td>Singles</td><td>L64</td><td>Kenny Boyd vs Mayana Aspinall</td></tr>
-<tr><td>Women</td><td>Singles</td><td>L64</td><td>Jo Starick vs Catherine Lindridge</td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L64</td><td>John Lehman vs Steve Viney</td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L64</td><td>Colin Laoutaris vs Jamie Stevens</td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L64</td><td>Jason Ahmad vs Craig Coleman</td></tr>
-<tr><td>Masters</td><td>Doubles</td><td>SF</td><td>McGuire.J - Allie.L vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Masters</td><td>Doubles</td><td>SF</td><td><span class="unknown">TBC</span> vs <span class="unknown">TBC</span></td></tr>
-<tr><td>O60</td><td>Singles</td><td>L32</td><td>Stacey Vine vs Michael Swift</td></tr>
-<tr><td>Women</td><td>Singles</td><td>L32</td><td>Holly Va'Aelua vs <span class="unknown">TBC</span></td></tr>
-</table>
-
-<h2>Monday 9:15 PM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Women</td><td>Doubles</td><td>SF</td><td><span class="unknown">TBC</span> vs Va'Aelua.H - Raeburn</td></tr>
-<tr><td>Women</td><td>Doubles</td><td>SF</td><td>Pologa.B - De Faria. vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Women</td><td>Singles</td><td>L32</td><td>Tanya Matthews vs Charlotte Williams</td></tr>
-<tr><td>Women</td><td>Singles</td><td>L32</td><td><span class="unknown">TBC</span> vs Clare Shanaher</td></tr>
-<tr><td>Women</td><td>Singles</td><td>L32</td><td>Aaliyah Clifford vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L32</td><td><span class="unknown">TBC</span> vs Andrew Reynolds</td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L32</td><td>Denis Hynes vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L32</td><td><span class="unknown">TBC</span> vs Shay Laing-Smith</td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L32</td><td>Travis Crawley vs George Zomaya</td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L32</td><td>Dene Heremaia vs Gerrad Wicks</td></tr>
-<tr><td>Masters</td><td>Singles</td><td>L32</td><td>Alec Evreniadis vs Steve Jamieson</td></tr>
-<tr><td>O60</td><td>Singles</td><td>L16</td><td>Steve McCormick vs <span class="unknown">TBC</span></td></tr>
-</table>
-
-<h2>Thursday 2:30 PM</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Open</td><td>Doubles</td><td>SF</td><td><span class="unknown">TBC</span> vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Open</td><td>Doubles</td><td>SF</td><td><span class="unknown">TBC</span> vs <span class="unknown">TBC</span></td></tr>
-</table>
-
-<h2>TBA</h2>
-<table>
-<tr><th>Division</th><th>Event</th><th>Round</th><th>Match</th></tr>
-<tr><td>Open</td><td>Plate</td><td>SF</td><td>Jack Whelan vs <span class="unknown">TBC</span></td></tr>
-<tr><td>Open</td><td>Plate</td><td>SF</td><td><span class="unknown">TBC</span> vs <span class="unknown">TBC</span></td></tr>
-</table>
+</div>
 
 </body>
 </html>
